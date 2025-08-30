@@ -5,23 +5,19 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Life Calculator – Estimate Your Remaining Years</title>
 
-  <!-- SEO Meta -->
-  <meta name="description" content="Life Calculator – estimate your remaining years based on your age and lifestyle. Fun and interactive online tool.">
-  <meta name="keywords" content="life calculator, remaining years, life expectancy, fun calculator, online tool">
-
   <!-- Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-BF6N36H4CW"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-    gtag('config', 'G-BF6N36H4CW');
+    gtag('config', 'G-BF6N36H4CW', { 'send_page_view': true });
   </script>
 
   <style>
     body { font-family: Arial, sans-serif; text-align: center; padding: 40px; }
     h1 { color: #2c3e50; }
-    label, select, input { display:block; margin:10px auto; padding:8px; }
+    input, select { display:block; margin:10px auto; padding:8px; }
     button { padding: 10px 20px; background: #e67e22; color: #fff; border: none; cursor: pointer; margin-top: 15px; }
     button:hover { background: #d35400; }
     #result { margin-top: 20px; font-size: 18px; color: #34495e; }
@@ -34,16 +30,15 @@
   <h1>Life Calculator</h1>
   <p>Estimate your remaining years based on your age and lifestyle (for fun!)</p>
 
-  <label for="dob">Date of Birth:</label>
-  <input type="date" id="dob">
+  <input type="date" id="dob" placeholder="Date of Birth">
 
-  <label for="smoking">Do you smoke?</label>
+  <label>Do you smoke?</label>
   <select id="smoking">
     <option value="no">No</option>
     <option value="yes">Yes</option>
   </select>
 
-  <label for="exercise">Exercise regularly?</label>
+  <label>Exercise regularly?</label>
   <select id="exercise">
     <option value="yes">Yes</option>
     <option value="no">No</option>
@@ -70,19 +65,15 @@
       const today = new Date();
       let age = today.getFullYear() - dobDate.getFullYear();
 
-      if (
-        today.getMonth() < dobDate.getMonth() ||
-        (today.getMonth() === dobDate.getMonth() && today.getDate() < dobDate.getDate())
-      ) {
+      if (today.getMonth() < dobDate.getMonth() || 
+          (today.getMonth() === dobDate.getMonth() && today.getDate() < dobDate.getDate())) {
         age--;
       }
 
       let remaining = 80 - age;
-
       if (smoking === "yes") remaining -= 5;
       if (exercise === "no") remaining -= 3;
       if (exercise === "yes") remaining += 2;
-
       if (remaining < 0) remaining = 0;
 
       document.getElementById('result').innerText =
