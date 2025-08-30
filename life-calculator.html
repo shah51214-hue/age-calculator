@@ -12,8 +12,8 @@
   <style>
     body { font-family: Arial, sans-serif; text-align: center; padding: 40px; }
     h1 { color: #2c3e50; }
-    input, select { padding: 8px; margin: 10px; }
-    button { padding: 10px 20px; background: #e67e22; color: #fff; border: none; cursor: pointer; }
+    label, select, input { display:block; margin:10px auto; padding:8px; }
+    button { padding: 10px 20px; background: #e67e22; color: #fff; border: none; cursor: pointer; margin-top: 15px; }
     button:hover { background: #d35400; }
     #result { margin-top: 20px; font-size: 18px; color: #34495e; }
     a { color: #2980b9; text-decoration: none; }
@@ -25,20 +25,20 @@
   <h1>Life Calculator</h1>
   <p>Estimate your remaining years based on your age and lifestyle (for fun!)</p>
 
-  <label for="dob">Date of Birth:</label><br>
-  <input type="date" id="dob"><br>
+  <label for="dob">Date of Birth:</label>
+  <input type="date" id="dob">
 
-  <label for="smoking">Do you smoke?</label><br>
+  <label for="smoking">Do you smoke?</label>
   <select id="smoking">
     <option value="no">No</option>
     <option value="yes">Yes</option>
-  </select><br>
+  </select>
 
-  <label for="exercise">Exercise regularly?</label><br>
+  <label for="exercise">Exercise regularly?</label>
   <select id="exercise">
     <option value="yes">Yes</option>
     <option value="no">No</option>
-  </select><br>
+  </select>
 
   <button onclick="calculateLife()">Calculate Life Expectancy</button>
 
@@ -46,7 +46,7 @@
 
   <p><a href="index.html">← Back to Age Calculator</a></p>
 
-  <!-- FAQ Schema -->
+  <!-- FAQ Schema for SEO -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -80,9 +80,13 @@
   }
   </script>
 
+  <!-- Calculator Script -->
   <script>
     function calculateLife() {
       const dob = document.getElementById('dob').value;
+      const smoking = document.getElementById('smoking').value;
+      const exercise = document.getElementById('exercise').value;
+
       if (!dob) {
         document.getElementById('result').innerText = "Please enter your date of birth.";
         return;
@@ -91,5 +95,29 @@
       const dobDate = new Date(dob);
       const today = new Date();
       let age = today.getFullYear() - dobDate.getFullYear();
-      if (today.getMonth() < dobDate.getMonth() || 
-         (today.getMonth() === dobDate.getMonth()
+
+      // Adjust if birthday hasn't occurred yet this year
+      if (
+        today.getMonth() < dobDate.getMonth() ||
+        (today.getMonth() === dobDate.getMonth() && today.getDate() < dobDate.getDate())
+      ) {
+        age--;
+      }
+
+      // Base life expectancy
+      let remaining = 80 - age;
+
+      // Adjust for lifestyle
+      if (smoking === "yes") remaining -= 5;
+      if (exercise === "no") remaining -= 3;
+      if (exercise === "yes") remaining += 2;
+
+      if (remaining < 0) remaining = 0;
+
+      document.getElementById('result').innerText =
+        `Estimated remaining years: ${remaining} years. Remember, this is just for fun!`;
+    }
+  </script>
+
+</body>
+</html>
