@@ -5,8 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Age Calculator – Calculate Your Exact Age Online</title>
 
-  <!-- Google Verification -->
-  <meta name="google-site-verification" content="XuYZ3yMD2RDH1ZlWau9xNgU-pSPqYzbOC2JgQUZsAFg" />
+  <!-- Google site verification -->
+  <meta name="google-site-verification" content="XuYZ3yMD2RDH1ZlWau9xNgU-pSPqYzbOC2JgQUZsAFg">
+
+  <!-- AdSense verification -->
+  <meta name="google-adsense-account" content="ca-pub-5118778152123369">
 
   <!-- SEO Meta -->
   <meta name="description" content="Free Age Calculator – instantly calculate your age in years, months, and days. Quick, easy, and accurate online tool.">
@@ -40,8 +43,7 @@
 
   <style>
     body { font-family: Arial, sans-serif; text-align: center; padding: 40px; }
-    h1 { color: #2c3e50; }
-    h2 { color: #2c3e50; margin-top: 30px; }
+    h1, h2 { color: #2c3e50; }
     input { padding: 8px; margin: 10px; }
     button { padding: 10px 20px; background: #2ecc71; color: #fff; border: none; cursor: pointer; }
     button:hover { background: #27ae60; }
@@ -57,7 +59,6 @@
 
   <h1>Free Age Calculator</h1>
   <p>Enter your date of birth to calculate your exact age:</p>
-
   <p>Welcome to our <strong>online age calculator</strong>. Quickly <strong>calculate your exact age</strong> in years, months, and days. Perfect for checking birthdays, milestones, or just for fun!</p>
 
   <input type="date" id="dob">
@@ -112,7 +113,6 @@
         document.getElementById('result').innerText = "Please enter your date of birth.";
         return;
       }
-
       let dobDate = new Date(dob);
       let today = new Date();
 
