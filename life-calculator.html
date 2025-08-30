@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Life Calculator – Estimate Your Remaining Years</title>
+
+  <!-- SEO Meta -->
+  <meta name="description" content="Life Calculator – estimate your remaining years based on your age and lifestyle. Fun and interactive online tool.">
+  <meta name="keywords" content="life calculator, remaining years, life expectancy, fun calculator, online tool">
+
+  <style>
+    body { font-family: Arial, sans-serif; text-align: center; padding: 40px; }
+    h1 { color: #2c3e50; }
+    input, select { padding: 8px; margin: 10px; }
+    button { padding: 10px 20px; background: #e67e22; color: #fff; border: none; cursor: pointer; }
+    button:hover { background: #d35400; }
+    #result { margin-top: 20px; font-size: 18px; color: #34495e; }
+    a { color: #2980b9; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+  </style>
+</head>
+<body>
+
+  <h1>Life Calculator</h1>
+  <p>Estimate your remaining years based on your age and lifestyle (for fun!)</p>
+
+  <label for="dob">Date of Birth:</label><br>
+  <input type="date" id="dob"><br>
+
+  <label for="smoking">Do you smoke?</label><br>
+  <select id="smoking">
+    <option value="no">No</option>
+    <option value="yes">Yes</option>
+  </select><br>
+
+  <label for="exercise">Exercise regularly?</label><br>
+  <select id="exercise">
+    <option value="yes">Yes</option>
+    <option value="no">No</option>
+  </select><br>
+
+  <button onclick="calculateLife()">Calculate Life Expectancy</button>
+
+  <div id="result"></div>
+
+  <p><a href="index.html">← Back to Age Calculator</a></p>
+
+  <!-- FAQ Schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How does the Life Calculator work?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The Life Calculator estimates your remaining years based on your age, smoking habits, and exercise routine. It's for fun and gives an approximate value."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is this tool free?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes, the Life Calculator is completely free to use."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I use it on mobile?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes, it works on any mobile device and desktop browser."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <script>
+    function calculateLife() {
+      const dob = document.getElementById('dob').value;
+      if (!dob) {
+        document.getElementById('result').innerText = "Please enter your date of birth.";
+        return;
+      }
+
+      const dobDate = new Date(dob);
+      const today = new Date();
+      let age = today.getFullYear() - dobDate.getFullYear();
+      if (today.getMonth() < dobDate.getMonth() || 
+         (today.getMonth() === dobDate.getMonth()
