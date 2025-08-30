@@ -1,47 +1,90 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Age Calculator</title>
-  <style>
-    body { font-family: Arial, sans-serif; text-align: center; margin-top: 50px; }
-    input, button { padding: 10px; margin: 10px; }
-  </style>
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Age Calculator - Free Online Tool</title>
 
-  <!-- ✅ SEO additions -->
-  <title>Free Age Calculator Online | Simple & Fast</title>
-  <meta name="description" content="Calculate your exact age in years, months, and days with our free online Age Calculator tool. Simple, fast, and mobile-friendly.">
-  <meta name="keywords" content="age calculator, online age tool, free calculator, date of birth to age, calculate age online">
-  <!-- ✅ SEO additions end -->
+  <!-- ✅ Basic SEO -->
+  <meta name="description" content="Free Age Calculator - instantly calculate your age in years, months, and days. Simple and accurate online tool.">
+  <meta name="keywords" content="age calculator, online age calculator, free age tool, calculate age, birthday calculator">
+
+  <!-- ✅ Open Graph (For Facebook, WhatsApp, LinkedIn Previews) -->
+  <meta property="og:title" content="Free Age Calculator - Simple Online Tool">
+  <meta property="og:description" content="Quickly calculate your exact age in years, months, and days. Try it now!">
+  <meta property="og:url" content="https://shah51214-hue.github.io/age-calculator/">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://via.placeholder.com/600x315.png?text=Age+Calculator">
+
+  <!-- ✅ Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Free Age Calculator - Online Tool">
+  <meta name="twitter:description" content="Find out your exact age instantly in years, months, and days.">
+  <meta name="twitter:image" content="https://via.placeholder.com/600x315.png?text=Age+Calculator">
+
+  <style>
+    body { font-family: Arial, sans-serif; text-align: center; padding: 40px; }
+    h1 { color: #2c3e50; }
+    input { padding: 8px; margin: 10px; }
+    button { padding: 10px 20px; background: #2ecc71; color: #fff; border: none; cursor: pointer; }
+    button:hover { background: #27ae60; }
+    #result { margin-top: 20px; font-size: 18px; color: #34495e; }
+    .faq { text-align: left; margin-top: 40px; max-width: 700px; margin-left: auto; margin-right: auto; }
+    .faq h2 { color: #2c3e50; }
+    .faq p { margin: 5px 0; }
+  </style>
 </head>
 <body>
-  <h1>Age Calculator</h1>
-  <p>Enter your date of birth:</p>
+
+  <h1>Free Age Calculator</h1>
+  <p>Enter your date of birth to calculate your exact age:</p>
+
   <input type="date" id="dob">
   <button onclick="calculateAge()">Calculate Age</button>
-  <h2 id="result"></h2>
+
+  <div id="result"></div>
+
+  <!-- ✅ FAQ Section for SEO -->
+  <div class="faq">
+    <h2>Frequently Asked Questions (FAQ)</h2>
+    <p><strong>Q: How does this age calculator work?</strong><br>
+    A: It calculates your exact age in years, months, and days based on your date of birth.</p>
+
+    <p><strong>Q: Is this tool free?</strong><br>
+    A: Yes, this age calculator is completely free to use.</p>
+
+    <p><strong>Q: Can I use it on mobile?</strong><br>
+    A: Yes, it works on any mobile device and desktop browser.</p>
+  </div>
 
   <script>
     function calculateAge() {
-      let dob = document.getElementById("dob").value;
+      let dob = document.getElementById('dob').value;
       if (!dob) {
-        document.getElementById("result").innerText = "Please select a date!";
+        document.getElementById('result').innerText = "Please enter your date of birth.";
         return;
       }
-      let birthDate = new Date(dob);
-      let today = new Date();
-      let age = today.getFullYear() - birthDate.getFullYear();
-      let m = today.getMonth() - birthDate.getMonth();
 
-      if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
-        age--;
+      let dobDate = new Date(dob);
+      let today = new Date();
+
+      let years = today.getFullYear() - dobDate.getFullYear();
+      let months = today.getMonth() - dobDate.getMonth();
+      let days = today.getDate() - dobDate.getDate();
+
+      if (days < 0) {
+        months--;
+        days += new Date(today.getFullYear(), today.getMonth(), 0).getDate();
       }
-      document.getElementById("result").innerText = "Your age is " + age + " years.";
+      if (months < 0) {
+        years--;
+        months += 12;
+      }
+
+      document.getElementById('result').innerText =
+        `You are ${years} years, ${months} months, and ${days} days old.`;
     }
   </script>
+
 </body>
 </html>
