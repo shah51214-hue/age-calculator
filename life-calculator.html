@@ -25,6 +25,7 @@
     #result { margin-top: 20px; font-size: 18px; color: #34495e; }
     a { color: #2980b9; text-decoration: none; }
     a:hover { text-decoration: underline; }
+    .ad-container { margin: 25px 0; }
   </style>
 </head>
 <body>
@@ -50,6 +51,20 @@
 
   <div id="result"></div>
 
+  <!-- AdSense Ad -->
+  <div class="ad-container">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <ins class="adsbygoogle"
+         style="display:block"
+         data-ad-client="ca-pub-XXXXXXXXXXXX"
+         data-ad-slot="0987654321"
+         data-ad-format="auto"
+         data-full-width-responsive="true"></ins>
+    <script>
+         (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+  </div>
+
   <p><a href="index.html">← Back to Age Calculator</a></p>
 
   <button onclick="shareResult()">Share Your Result on Twitter</button>
@@ -69,7 +84,6 @@
       const dobDate = new Date(dob);
       const today = new Date();
       let age = today.getFullYear() - dobDate.getFullYear();
-
       if (today.getMonth() < dobDate.getMonth() || 
           (today.getMonth() === dobDate.getMonth() && today.getDate() < dobDate.getDate())) {
         age--;
