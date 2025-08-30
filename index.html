@@ -25,6 +25,15 @@
   <meta name="twitter:description" content="Find out your exact age instantly in years, months, and days.">
   <meta name="twitter:image" content="https://via.placeholder.com/600x315.png?text=Age+Calculator">
 
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-BF6N36H4CW"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-BF6N36H4CW');
+  </script>
+
   <style>
     body { font-family: Arial, sans-serif; text-align: center; padding: 40px; }
     h1 { color: #2c3e50; }
@@ -34,17 +43,7 @@
     button:hover { background: #27ae60; }
     #result { margin-top: 20px; font-size: 18px; color: #34495e; }
     .faq { text-align: left; margin-top: 40px; max-width: 700px; margin-left: auto; margin-right: auto; }
-    .faq h2 { color: #2c3e50; }
-    .faq p { margin: 5px 0; }
-    a.button {
-      display:inline-block;
-      padding:10px 20px;
-      background:#e67e22;
-      color:#fff;
-      text-decoration:none;
-      border-radius:5px;
-      margin-top:15px;
-    }
+    a.button { display:inline-block; padding:10px 20px; background:#e67e22; color:#fff; text-decoration:none; border-radius:5px; margin-top:15px; }
     a.button:hover { background:#d35400; }
     .fun-fact { text-align: center; margin-top: 40px; font-style: italic; color: #7f8c8d; }
   </style>
@@ -87,48 +86,6 @@
     <h2>Fun Fact</h2>
     <p>Did you know? The oldest verified human lived to 122 years! Every year counts — enjoy life to the fullest.</p>
   </div>
-
-  <!-- FAQ Schema -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": [
-      {
-        "@type": "Question",
-        "name": "How does this age calculator work?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "It calculates your exact age in years, months, and days based on your date of birth."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Is this tool free?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Yes, this age calculator is completely free to use."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Can I use it on mobile?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Yes, it works on any mobile device and desktop browser."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Can I calculate my age in months and days?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Yes, this calculator shows your exact age in years, months, and days."
-        }
-      }
-    ]
-  }
-  </script>
 
   <script>
     function calculateAge() {
