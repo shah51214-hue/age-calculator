@@ -1,42 +1,64 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Life Calculator – Estimate Your Remaining Years</title>
-
-  <!-- Google site verification -->
-  <meta name="google-site-verification" content="XuYZ3yMD2RDH1ZlWau9xNgU-pSPqYzbOC2JgQUZsAFg">
-
-  <!-- AdSense verification -->
-  <meta name="google-adsense-account" content="ca-pub-5118778152123369">
-
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-BF6N36H4CW"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-BF6N36H4CW');
-  </script>
-
-  <!-- Google AdSense -->
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5118778152123369"
-     crossorigin="anonymous"></script>
-
-  <style>
-    body { font-family: Arial, sans-serif; text-align: center; padding: 40px; }
-    h1, h2 { color: #2c3e50; }
-    input, select { padding: 8px; margin: 10px; }
-    button { padding: 10px 20px; background: #e67e22; color: #fff; border: none; cursor: pointer; }
-    button:hover { background: #d35400; }
-    #result { margin-top: 20px; font-size: 18px; color: #34495e; }
-    .adsense { margin: 30px 0; text-align: center; }
-    a.button { display:inline-block; padding:10px 20px; background:#2ecc71; color:#fff; text-decoration:none; border-radius:5px; margin-top:15px; }
-    a.button:hover { background:#27ae60; }
-  </style>
+  <meta name="description" content="Life Calculator – estimate your remaining years based on your age and lifestyle.">
 </head>
 <body>
 
-  <h1>Life Calculator</h1>
-  <p>Estimate your remaining years based on your age and lifestyle (for fun
+<h1>Life Calculator</h1>
+<p>Estimate your remaining years based on your age and lifestyle (for fun!)</p>
+
+<label>Date of Birth:</label>
+<input type="date" id="dob">
+<br>
+<label>Do you smoke?</label>
+<select id="smoke">
+  <option value="no">No</option>
+  <option value="yes">Yes</option>
+</select>
+<br>
+<label>Exercise regularly?</label>
+<select id="exercise">
+  <option value="no">No</option>
+  <option value="yes">Yes</option>
+</select>
+<br>
+<button onclick="calculateLife()">Calculate Life Expectancy</button>
+
+<div id="result"></div>
+
+<!-- FREE AD PLACEHOLDER -->
+<div style="margin:30px 0; text-align:center; border:1px dashed #999; padding:10px;">
+  Your Free Ad Network Here (PropellerAds, Adf.ly, etc.)
+</div>
+
+<!-- AFFILIATE LINK EXAMPLE -->
+<p style="margin-top:20px;">
+  <a href="https://www.amazon.com/dp/example" target="_blank" style="color:blue;">
+    Check out this health product!
+  </a>
+</p>
+
+<script>
+function calculateLife() {
+  let dob = document.getElementById('dob').value;
+  if (!dob) { document.getElementById('result').innerText="Enter your date of birth."; return; }
+  let birth = new Date(dob);
+  let today = new Date();
+  let age = today.getFullYear() - birth.getFullYear();
+  let smoke = document.getElementById('smoke').value;
+  let exercise = document.getElementById('exercise').value;
+  let life = 80; // average baseline
+  if(smoke==="yes") life-=10;
+  if(exercise==="no") life-=5;
+  let remaining = life - age;
+  remaining = remaining<0?0:remaining;
+  document.getElementById('result').innerText = `Estimated remaining years: ${remaining}`;
+}
+</script>
+
+</body>
+</html>
