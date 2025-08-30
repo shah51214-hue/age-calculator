@@ -9,6 +9,15 @@
   <meta name="description" content="Life Calculator – estimate your remaining years based on your age and lifestyle. Fun and interactive online tool.">
   <meta name="keywords" content="life calculator, remaining years, life expectancy, fun calculator, online tool">
 
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-BF6N36H4CW"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-BF6N36H4CW');
+  </script>
+
   <style>
     body { font-family: Arial, sans-serif; text-align: center; padding: 40px; }
     h1 { color: #2c3e50; }
@@ -46,41 +55,6 @@
 
   <p><a href="index.html">← Back to Age Calculator</a></p>
 
-  <!-- FAQ Schema for SEO -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": [
-      {
-        "@type": "Question",
-        "name": "How does the Life Calculator work?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "The Life Calculator estimates your remaining years based on your age, smoking habits, and exercise routine. It's for fun and gives an approximate value."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Is this tool free?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Yes, the Life Calculator is completely free to use."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Can I use it on mobile?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Yes, it works on any mobile device and desktop browser."
-        }
-      }
-    ]
-  }
-  </script>
-
-  <!-- Calculator Script -->
   <script>
     function calculateLife() {
       const dob = document.getElementById('dob').value;
@@ -96,7 +70,6 @@
       const today = new Date();
       let age = today.getFullYear() - dobDate.getFullYear();
 
-      // Adjust if birthday hasn't occurred yet this year
       if (
         today.getMonth() < dobDate.getMonth() ||
         (today.getMonth() === dobDate.getMonth() && today.getDate() < dobDate.getDate())
@@ -104,10 +77,8 @@
         age--;
       }
 
-      // Base life expectancy
       let remaining = 80 - age;
 
-      // Adjust for lifestyle
       if (smoking === "yes") remaining -= 5;
       if (exercise === "no") remaining -= 3;
       if (exercise === "yes") remaining += 2;
