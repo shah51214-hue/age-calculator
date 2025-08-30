@@ -4,17 +4,18 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Life Calculator – Estimate Your Remaining Years</title>
-<meta name="description" content="Life Calculator – estimate your remaining years based on your age and lifestyle.">
 
 <style>
-  body { font-family: Arial, sans-serif; text-align:center; padding:40px; background:#f9f9f9; }
-  h1 { color:#2c3e50; }
-  input, select { padding:10px; margin:10px; border-radius:5px; border:1px solid #ccc; }
-  button { padding:12px 25px; background:#3498db; color:#fff; border:none; border-radius:5px; cursor:pointer; font-size:16px; }
-  button:hover { background:#2980b9; }
-  #result { margin-top:20px; font-size:18px; color:#34495e; }
-  .ad-box { margin:25px auto; width:320px; height:50px; border:1px dashed #999; display:flex; align-items:center; justify-content:center; background:#fff; }
-  .affiliate { margin-top:20px; font-size:16px; color:#2c3e50; }
+body { font-family: Arial, sans-serif; text-align:center; padding:40px; background:#f9f9f9; }
+h1 { color:#2c3e50; }
+input, select { padding:10px; margin:10px; border-radius:5px; border:1px solid #ccc; }
+button { padding:12px 25px; background:#3498db; color:#fff; border:none; border-radius:5px; cursor:pointer; font-size:16px; }
+button:hover { background:#2980b9; }
+#result { margin-top:20px; font-size:18px; color:#34495e; }
+.share { margin-top:15px; display:none; }
+.share a { margin:0 10px; display:inline-block; padding:8px 12px; background:#3498db; color:#fff; border-radius:5px; text-decoration:none; }
+.share a:hover { background:#2980b9; }
+.ad-box { margin:25px auto; width:320px; height:50px; border:1px dashed #999; display:flex; align-items:center; justify-content:center; background:#fff; }
 </style>
 </head>
 <body>
@@ -23,40 +24,34 @@
 <p>Estimate your remaining years based on your age and lifestyle (for fun!)</p>
 
 <label>Date of Birth:</label>
-<input type="date" id="dob">
-<br>
+<input type="date" id="dob"><br>
 <label>Do you smoke?</label>
 <select id="smoke">
   <option value="no">No</option>
   <option value="yes">Yes</option>
-</select>
-<br>
+</select><br>
 <label>Exercise regularly?</label>
 <select id="exercise">
   <option value="no">No</option>
   <option value="yes">Yes</option>
-</select>
-<br>
+</select><br>
 <button onclick="calculateLife()">Calculate Life Expectancy</button>
 
 <div id="result"></div>
 
-<!-- PROPSELLER ADS UNIT TOP -->
-<div class="ad-box">
-  Your Ad Here (PropellerAds)
+<!-- Ads Placeholder Top -->
+<div class="ad-box">Your Ad Here</div>
+
+<!-- Share buttons -->
+<div class="share" id="shareButtons">
+  <p>Share your result:</p>
+  <a href="#" target="_blank" id="whatsapp">WhatsApp</a>
+  <a href="#" target="_blank" id="facebook">Facebook</a>
+  <a href="#" target="_blank" id="twitter">Twitter</a>
 </div>
 
-<!-- Affiliate Link -->
-<p class="affiliate">
-  <a href="https://www.amazon.com/dp/example" target="_blank" style="color:#3498db; text-decoration:none; font-weight:bold;">
-    Check out this health product!
-  </a>
-</p>
-
-<!-- PROPSELLER ADS UNIT BOTTOM -->
-<div class="ad-box">
-  Your Ad Here (PropellerAds)
-</div>
+<!-- Ads Placeholder Bottom -->
+<div class="ad-box">Your Ad Here</div>
 
 <script>
 function calculateLife() {
@@ -71,7 +66,20 @@ function calculateLife() {
   if(exercise==="no") life-=5;
   let remaining=life-age;
   remaining=remaining<0?0:remaining;
-  document.getElementById('result').innerText=`Estimated remaining years: ${remaining}`;
+  
+  let resultText=`Estimated remaining years: ${remaining}`;
+  document.getElementById('result').innerText=resultText;
+  
+  // Show share buttons
+  let shareDiv = document.getElementById('shareButtons');
+  shareDiv.style.display = "block";
+  
+  let url = encodeURIComponent("https://shah51214-hue.github.io/age-calculator/life-calculator.html");
+  let text = encodeURIComponent(resultText + " Try this Life Calculator!");
+  
+  document.getElementById('whatsapp').href = `https://wa.me/?text=${text} ${url}`;
+  document.getElementById('facebook').href = `https://www.facebook.com/sharer/sharer.php?u=${url}&quote=${text}`;
+  document.getElementById('twitter').href = `https://twitter.com/intent/tweet?text=${text}&url=${url}`;
 }
 </script>
 
