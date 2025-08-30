@@ -30,9 +30,10 @@
 
 <div id="result"></div>
 
-<!-- FREE AD PLACEHOLDER -->
-<div style="margin:30px 0; text-align:center; border:1px dashed #999; padding:10px;">
-  Your Free Ad Network Here (PropellerAds, Adf.ly, etc.)
+<!-- PROPSELLER ADS UNIT TOP -->
+<div style="margin:30px 0; text-align:center;">
+  <script type="text/javascript" src="//p01.propellerads.com/ad-server.js"></script>
+  <div id="propeller-ad-top" style="width:320px; height:50px; margin:auto;"></div>
 </div>
 
 <!-- AFFILIATE LINK EXAMPLE -->
@@ -41,6 +42,12 @@
     Check out this health product!
   </a>
 </p>
+
+<!-- PROPSELLER ADS UNIT BOTTOM -->
+<div style="margin:30px 0; text-align:center;">
+  <script type="text/javascript" src="//p01.propellerads.com/ad-server.js"></script>
+  <div id="propeller-ad-bottom" style="width:320px; height:50px; margin:auto;"></div>
+</div>
 
 <script>
 function calculateLife() {
@@ -51,7 +58,7 @@ function calculateLife() {
   let age = today.getFullYear() - birth.getFullYear();
   let smoke = document.getElementById('smoke').value;
   let exercise = document.getElementById('exercise').value;
-  let life = 80; // average baseline
+  let life = 80; // baseline
   if(smoke==="yes") life-=10;
   if(exercise==="no") life-=5;
   let remaining = life - age;
