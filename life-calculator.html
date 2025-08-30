@@ -3,9 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Life Calculator – Estimate Your Remaining Years | Fun Online Tool</title>
-  <meta name="description" content="Try our Life Calculator – estimate your remaining years based on your age and lifestyle. Fun and easy online tool.">
-  <meta name="keywords" content="life calculator, life expectancy, remaining years, fun calculator, online life calculator">
+  <title>Life Calculator – Estimate Your Remaining Years</title>
 
   <!-- Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-BF6N36H4CW"></script>
@@ -13,19 +11,23 @@
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-    gtag('config', 'G-BF6N36H4CW', { 'send_page_view': true });
+    gtag('config', 'G-BF6N36H4CW');
   </script>
+
+  <!-- Google AdSense -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5118778152123369"
+     crossorigin="anonymous"></script>
 
   <style>
     body { font-family: Arial, sans-serif; text-align: center; padding: 40px; }
-    h1 { color: #2c3e50; }
-    input, select { display:block; margin:10px auto; padding:8px; }
-    button { padding: 10px 20px; background: #e67e22; color: #fff; border: none; cursor: pointer; margin-top: 15px; }
+    h1, h2 { color: #2c3e50; }
+    input, select { padding: 8px; margin: 10px; }
+    button { padding: 10px 20px; background: #e67e22; color: #fff; border: none; cursor: pointer; }
     button:hover { background: #d35400; }
     #result { margin-top: 20px; font-size: 18px; color: #34495e; }
-    a { color: #2980b9; text-decoration: none; }
-    a:hover { text-decoration: underline; }
-    .ad-container { margin: 25px 0; }
+    .adsense { margin: 30px 0; text-align: center; }
+    a.button { display:inline-block; padding:10px 20px; background:#2ecc71; color:#fff; text-decoration:none; border-radius:5px; margin-top:15px; }
+    a.button:hover { background:#27ae60; }
   </style>
 </head>
 <body>
@@ -33,31 +35,31 @@
   <h1>Life Calculator</h1>
   <p>Estimate your remaining years based on your age and lifestyle (for fun!)</p>
 
-  <input type="date" id="dob" placeholder="Date of Birth">
+  <label for="dob">Date of Birth:</label><br>
+  <input type="date" id="dob"><br>
 
-  <label>Do you smoke?</label>
-  <select id="smoking">
+  <label>Do you smoke?</label><br>
+  <select id="smoke">
     <option value="no">No</option>
     <option value="yes">Yes</option>
-  </select>
+  </select><br>
 
-  <label>Exercise regularly?</label>
+  <label>Exercise regularly?</label><br>
   <select id="exercise">
     <option value="yes">Yes</option>
     <option value="no">No</option>
-  </select>
+  </select><br>
 
   <button onclick="calculateLife()">Calculate Life Expectancy</button>
 
   <div id="result"></div>
 
-  <!-- AdSense Ad -->
-  <div class="ad-container">
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <!-- AdSense unit -->
+  <div class="adsense">
     <ins class="adsbygoogle"
-         style="display:block"
-         data-ad-client="ca-pub-XXXXXXXXXXXX"
-         data-ad-slot="0987654321"
+         style="display:block; text-align:center;"
+         data-ad-client="ca-pub-5118778152123369"
+         data-ad-slot="1234567891"
          data-ad-format="auto"
          data-full-width-responsive="true"></ins>
     <script>
@@ -65,47 +67,39 @@
     </script>
   </div>
 
-  <p><a href="index.html">← Back to Age Calculator</a></p>
-
-  <button onclick="shareResult()">Share Your Result on Twitter</button>
-  <p id="share-result"></p>
+  <p><a href="index.html" class="button">← Back to Age Calculator</a></p>
 
   <script>
     function calculateLife() {
-      const dob = document.getElementById('dob').value;
-      const smoking = document.getElementById('smoking').value;
-      const exercise = document.getElementById('exercise').value;
+      let dob = document.getElementById('dob').value;
+      let smoke = document.getElementById('smoke').value;
+      let exercise = document.getElementById('exercise').value;
 
       if (!dob) {
         document.getElementById('result').innerText = "Please enter your date of birth.";
         return;
       }
 
-      const dobDate = new Date(dob);
-      const today = new Date();
-      let age = today.getFullYear() - dobDate.getFullYear();
-      if (today.getMonth() < dobDate.getMonth() || 
-          (today.getMonth() === dobDate.getMonth() && today.getDate() < dobDate.getDate())) {
-        age--;
-      }
+      let birthDate = new Date(dob);
+      let today = new Date();
+      let ageYears = today.getFullYear() - birthDate.getFullYear();
+      let months = today.getMonth() - birthDate.getMonth();
+      if (months < 0) ageYears--;
 
-      let remaining = 80 - age;
-      if (smoking === "yes") remaining -= 5;
-      if (exercise === "no") remaining -= 3;
-      if (exercise === "yes") remaining += 2;
-      if (remaining < 0) remaining = 0;
+      // Base life expectancy (for fun, global average ~73)
+      let lifeExpectancy = 73;
 
-      document.getElementById('result').innerText =
-        `Estimated remaining years: ${remaining} years. Remember, this is just for fun!`;
-    }
+      // Adjust for age
+      lifeExpectancy -= ageYears;
 
-    function shareResult() {
-      const resultText = document.getElementById('result').innerText;
-      if (!resultText) return alert("Calculate your life expectancy first!");
-      const url = encodeURIComponent('https://shah51214-hue.github.io/age-calculator/');
-      const text = encodeURIComponent(`I just tried the Life Calculator! ${resultText} Try it yourself → ${url}`);
-      const shareURL = `https://twitter.com/intent/tweet?text=${text}`;
-      window.open(shareURL, '_blank');
+      // Lifestyle adjustments
+      if (smoke === "yes") lifeExpectancy -= 5;
+      if (exercise === "yes") lifeExpectancy += 3;
+
+      if (lifeExpectancy < 0) lifeExpectancy = 0;
+
+      document.getElementById('result').innerText = 
+        `Estimated remaining years: ${lifeExpectancy} years (for fun!)`;
     }
   </script>
 
