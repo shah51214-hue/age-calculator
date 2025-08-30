@@ -3,7 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Life Calculator – Estimate Your Remaining Years</title>
+  <title>Life Calculator – Estimate Your Remaining Years | Fun Online Tool</title>
+  <meta name="description" content="Try our Life Calculator – estimate your remaining years based on your age and lifestyle. Fun and easy online tool.">
+  <meta name="keywords" content="life calculator, life expectancy, remaining years, fun calculator, online life calculator">
 
   <!-- Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-BF6N36H4CW"></script>
@@ -50,6 +52,9 @@
 
   <p><a href="index.html">← Back to Age Calculator</a></p>
 
+  <button onclick="shareResult()">Share Your Result on Twitter</button>
+  <p id="share-result"></p>
+
   <script>
     function calculateLife() {
       const dob = document.getElementById('dob').value;
@@ -78,6 +83,15 @@
 
       document.getElementById('result').innerText =
         `Estimated remaining years: ${remaining} years. Remember, this is just for fun!`;
+    }
+
+    function shareResult() {
+      const resultText = document.getElementById('result').innerText;
+      if (!resultText) return alert("Calculate your life expectancy first!");
+      const url = encodeURIComponent('https://shah51214-hue.github.io/age-calculator/');
+      const text = encodeURIComponent(`I just tried the Life Calculator! ${resultText} Try it yourself → ${url}`);
+      const shareURL = `https://twitter.com/intent/tweet?text=${text}`;
+      window.open(shareURL, '_blank');
     }
   </script>
 
