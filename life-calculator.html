@@ -5,6 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Life Calculator – Estimate Your Remaining Years</title>
 
+  <!-- Google site verification -->
+  <meta name="google-site-verification" content="XuYZ3yMD2RDH1ZlWau9xNgU-pSPqYzbOC2JgQUZsAFg">
+
+  <!-- AdSense verification -->
+  <meta name="google-adsense-account" content="ca-pub-5118778152123369">
+
   <!-- Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-BF6N36H4CW"></script>
   <script>
@@ -33,75 +39,4 @@
 <body>
 
   <h1>Life Calculator</h1>
-  <p>Estimate your remaining years based on your age and lifestyle (for fun!)</p>
-
-  <label for="dob">Date of Birth:</label><br>
-  <input type="date" id="dob"><br>
-
-  <label>Do you smoke?</label><br>
-  <select id="smoke">
-    <option value="no">No</option>
-    <option value="yes">Yes</option>
-  </select><br>
-
-  <label>Exercise regularly?</label><br>
-  <select id="exercise">
-    <option value="yes">Yes</option>
-    <option value="no">No</option>
-  </select><br>
-
-  <button onclick="calculateLife()">Calculate Life Expectancy</button>
-
-  <div id="result"></div>
-
-  <!-- AdSense unit -->
-  <div class="adsense">
-    <ins class="adsbygoogle"
-         style="display:block; text-align:center;"
-         data-ad-client="ca-pub-5118778152123369"
-         data-ad-slot="1234567891"
-         data-ad-format="auto"
-         data-full-width-responsive="true"></ins>
-    <script>
-         (adsbygoogle = window.adsbygoogle || []).push({});
-    </script>
-  </div>
-
-  <p><a href="index.html" class="button">← Back to Age Calculator</a></p>
-
-  <script>
-    function calculateLife() {
-      let dob = document.getElementById('dob').value;
-      let smoke = document.getElementById('smoke').value;
-      let exercise = document.getElementById('exercise').value;
-
-      if (!dob) {
-        document.getElementById('result').innerText = "Please enter your date of birth.";
-        return;
-      }
-
-      let birthDate = new Date(dob);
-      let today = new Date();
-      let ageYears = today.getFullYear() - birthDate.getFullYear();
-      let months = today.getMonth() - birthDate.getMonth();
-      if (months < 0) ageYears--;
-
-      // Base life expectancy (for fun, global average ~73)
-      let lifeExpectancy = 73;
-
-      // Adjust for age
-      lifeExpectancy -= ageYears;
-
-      // Lifestyle adjustments
-      if (smoke === "yes") lifeExpectancy -= 5;
-      if (exercise === "yes") lifeExpectancy += 3;
-
-      if (lifeExpectancy < 0) lifeExpectancy = 0;
-
-      document.getElementById('result').innerText = 
-        `Estimated remaining years: ${lifeExpectancy} years (for fun!)`;
-    }
-  </script>
-
-</body>
-</html>
+  <p>Estimate your remaining years based on your age and lifestyle (for fun
