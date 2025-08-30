@@ -29,7 +29,7 @@
     body { font-family: Arial, sans-serif; text-align: center; padding: 40px; }
     h1 { color: #2c3e50; }
     h2 { color: #2c3e50; margin-top: 30px; }
-    input, select { padding: 8px; margin: 10px; }
+    input { padding: 8px; margin: 10px; }
     button { padding: 10px 20px; background: #2ecc71; color: #fff; border: none; cursor: pointer; }
     button:hover { background: #27ae60; }
     #result { margin-top: 20px; font-size: 18px; color: #34495e; }
@@ -54,25 +54,20 @@
   <h1>Free Age Calculator</h1>
   <p>Enter your date of birth to calculate your exact age:</p>
 
-  <!-- Keyword-rich paragraph -->
   <p>Welcome to our <strong>online age calculator</strong>. Quickly <strong>calculate your exact age</strong> in years, months, and days. Perfect for checking birthdays, milestones, or just for fun!</p>
 
-  <!-- Input section -->
   <input type="date" id="dob">
   <button onclick="calculateAge()">Calculate Age</button>
 
   <div id="result"></div>
 
-  <!-- How to use section -->
   <h2>How to use this Age Calculator</h2>
   <p>Simply select your date of birth and click "Calculate Age". Instantly see your age broken down in years, months, and days. Works on any device, including mobile phones and tablets.</p>
 
-  <!-- Life Calculator button -->
   <p>
     <a href="life-calculator.html" class="button">Try the Life Calculator →</a>
   </p>
 
-  <!-- FAQ Section -->
   <div class="faq">
     <h2>Frequently Asked Questions (FAQ)</h2>
     <p><strong>Q: How does this age calculator work?</strong><br>
@@ -88,11 +83,52 @@
     A: Yes, this calculator shows your exact age in years, months, and days.</p>
   </div>
 
-  <!-- Fun Fact Section -->
   <div class="fun-fact">
     <h2>Fun Fact</h2>
     <p>Did you know? The oldest verified human lived to 122 years! Every year counts — enjoy life to the fullest.</p>
   </div>
+
+  <!-- FAQ Schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How does this age calculator work?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "It calculates your exact age in years, months, and days based on your date of birth."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is this tool free?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes, this age calculator is completely free to use."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I use it on mobile?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes, it works on any mobile device and desktop browser."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I calculate my age in months and days?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes, this calculator shows your exact age in years, months, and days."
+        }
+      }
+    ]
+  }
+  </script>
 
   <script>
     function calculateAge() {
