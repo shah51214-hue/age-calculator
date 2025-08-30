@@ -1,19 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Age Calculator – Free Online Tool</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Age Calculator – Free Online Tool</title>
 
-  <!-- SEO -->
-  <meta name="description" content="Free Age Calculator – instantly calculate your age in years, months, and days.">
-  <meta name="keywords" content="age calculator, online age calculator, free age tool, birthday calculator">
+<!-- SEO -->
+<meta name="description" content="Free Age Calculator – instantly calculate your age in years, months, and days.">
+<meta name="keywords" content="age calculator, online age calculator, free age tool, birthday calculator">
 
-  <!-- Social Share -->
-  <meta property="og:title" content="Free Age Calculator - Simple Online Tool">
-  <meta property="og:description" content="Quickly calculate your exact age in years, months, and days.">
-  <meta property="og:url" content="https://shah51214-hue.github.io/age-calculator/">
-  <meta property="og:type" content="website">
+<!-- Social Share -->
+<meta property="og:title" content="Free Age Calculator - Simple Online Tool">
+<meta property="og:description" content="Quickly calculate your exact age in years, months, and days.">
+<meta property="og:url" content="https://shah51214-hue.github.io/age-calculator/">
+<meta property="og:type" content="website">
+
+<style>
+  body { font-family: Arial, sans-serif; text-align:center; padding:40px; background:#f9f9f9; }
+  h1 { color:#2c3e50; }
+  input, select { padding:10px; margin:10px; border-radius:5px; border:1px solid #ccc; }
+  button { padding:12px 25px; background:#2ecc71; color:#fff; border:none; border-radius:5px; cursor:pointer; font-size:16px; }
+  button:hover { background:#27ae60; }
+  #result { margin-top:20px; font-size:18px; color:#34495e; }
+  a.button { display:inline-block; padding:12px 25px; background:#e67e22; color:#fff; text-decoration:none; border-radius:5px; margin:20px 0; }
+  a.button:hover { background:#d35400; }
+  .ad-box { margin:25px auto; width:320px; height:50px; border:1px dashed #999; display:flex; align-items:center; justify-content:center; background:#fff; }
+  .affiliate { margin-top:20px; font-size:16px; color:#2c3e50; }
+</style>
 </head>
 <body>
 
@@ -24,40 +37,36 @@
 
 <div id="result"></div>
 
-<h2>Try Our Life Calculator →</h2>
-<a href="life-calculator.html">Go to Life Calculator</a>
+<a href="life-calculator.html" class="button">Try Life Calculator →</a>
 
 <!-- PROPSELLER ADS UNIT TOP -->
-<div style="margin:30px 0; text-align:center;">
-  <script type="text/javascript" src="//p01.propellerads.com/ad-server.js"></script>
-  <div id="propeller-ad-top" style="width:320px; height:50px; margin:auto;"></div>
+<div class="ad-box">
+  Your Ad Here (PropellerAds)
 </div>
 
-<!-- AFFILIATE LINK EXAMPLE -->
-<p style="margin-top:20px;">
-  <a href="https://www.amazon.com/dp/example" target="_blank" style="color:blue;">
+<!-- Affiliate Link -->
+<p class="affiliate">
+  <a href="https://www.amazon.com/dp/example" target="_blank" style="color:#e67e22; text-decoration:none; font-weight:bold;">
     Check out this useful product!
   </a>
 </p>
 
 <!-- PROPSELLER ADS UNIT BOTTOM -->
-<div style="margin:30px 0; text-align:center;">
-  <script type="text/javascript" src="//p01.propellerads.com/ad-server.js"></script>
-  <div id="propeller-ad-bottom" style="width:320px; height:50px; margin:auto;"></div>
+<div class="ad-box">
+  Your Ad Here (PropellerAds)
 </div>
 
 <script>
 function calculateAge() {
   let dob = document.getElementById('dob').value;
-  if (!dob) { document.getElementById('result').innerText = "Please enter your date of birth."; return; }
-  let dobDate = new Date(dob);
-  let today = new Date();
-  let years = today.getFullYear() - dobDate.getFullYear();
-  let months = today.getMonth() - dobDate.getMonth();
-  let days = today.getDate() - dobDate.getDate();
+  if(!dob){document.getElementById('result').innerText="Please enter your date of birth."; return;}
+  let dobDate=new Date(dob), today=new Date();
+  let years=today.getFullYear()-dobDate.getFullYear();
+  let months=today.getMonth()-dobDate.getMonth();
+  let days=today.getDate()-dobDate.getDate();
   if(days<0){months--;days+=new Date(today.getFullYear(),today.getMonth(),0).getDate();}
   if(months<0){years--;months+=12;}
-  document.getElementById('result').innerText = `You are ${years} years, ${months} months, and ${days} days old.`;
+  document.getElementById('result').innerText=`You are ${years} years, ${months} months, and ${days} days old.`;
 }
 </script>
 
