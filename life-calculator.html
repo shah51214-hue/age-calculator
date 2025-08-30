@@ -1,10 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Life Calculator – Estimate Your Remaining Years</title>
-  <meta name="description" content="Life Calculator – estimate your remaining years based on your age and lifestyle.">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Life Calculator – Estimate Your Remaining Years</title>
+<meta name="description" content="Life Calculator – estimate your remaining years based on your age and lifestyle.">
+
+<style>
+  body { font-family: Arial, sans-serif; text-align:center; padding:40px; background:#f9f9f9; }
+  h1 { color:#2c3e50; }
+  input, select { padding:10px; margin:10px; border-radius:5px; border:1px solid #ccc; }
+  button { padding:12px 25px; background:#3498db; color:#fff; border:none; border-radius:5px; cursor:pointer; font-size:16px; }
+  button:hover { background:#2980b9; }
+  #result { margin-top:20px; font-size:18px; color:#34495e; }
+  .ad-box { margin:25px auto; width:320px; height:50px; border:1px dashed #999; display:flex; align-items:center; justify-content:center; background:#fff; }
+  .affiliate { margin-top:20px; font-size:16px; color:#2c3e50; }
+</style>
 </head>
 <body>
 
@@ -31,39 +42,36 @@
 <div id="result"></div>
 
 <!-- PROPSELLER ADS UNIT TOP -->
-<div style="margin:30px 0; text-align:center;">
-  <script type="text/javascript" src="//p01.propellerads.com/ad-server.js"></script>
-  <div id="propeller-ad-top" style="width:320px; height:50px; margin:auto;"></div>
+<div class="ad-box">
+  Your Ad Here (PropellerAds)
 </div>
 
-<!-- AFFILIATE LINK EXAMPLE -->
-<p style="margin-top:20px;">
-  <a href="https://www.amazon.com/dp/example" target="_blank" style="color:blue;">
+<!-- Affiliate Link -->
+<p class="affiliate">
+  <a href="https://www.amazon.com/dp/example" target="_blank" style="color:#3498db; text-decoration:none; font-weight:bold;">
     Check out this health product!
   </a>
 </p>
 
 <!-- PROPSELLER ADS UNIT BOTTOM -->
-<div style="margin:30px 0; text-align:center;">
-  <script type="text/javascript" src="//p01.propellerads.com/ad-server.js"></script>
-  <div id="propeller-ad-bottom" style="width:320px; height:50px; margin:auto;"></div>
+<div class="ad-box">
+  Your Ad Here (PropellerAds)
 </div>
 
 <script>
 function calculateLife() {
-  let dob = document.getElementById('dob').value;
-  if (!dob) { document.getElementById('result').innerText="Enter your date of birth."; return; }
-  let birth = new Date(dob);
-  let today = new Date();
-  let age = today.getFullYear() - birth.getFullYear();
-  let smoke = document.getElementById('smoke').value;
-  let exercise = document.getElementById('exercise').value;
-  let life = 80; // baseline
+  let dob=document.getElementById('dob').value;
+  if(!dob){document.getElementById('result').innerText="Enter your date of birth."; return;}
+  let birth=new Date(dob), today=new Date();
+  let age=today.getFullYear()-birth.getFullYear();
+  let smoke=document.getElementById('smoke').value;
+  let exercise=document.getElementById('exercise').value;
+  let life=80; // baseline
   if(smoke==="yes") life-=10;
   if(exercise==="no") life-=5;
-  let remaining = life - age;
-  remaining = remaining<0?0:remaining;
-  document.getElementById('result').innerText = `Estimated remaining years: ${remaining}`;
+  let remaining=life-age;
+  remaining=remaining<0?0:remaining;
+  document.getElementById('result').innerText=`Estimated remaining years: ${remaining}`;
 }
 </script>
 
