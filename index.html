@@ -16,16 +16,18 @@
 <meta property="og:type" content="website">
 
 <style>
-  body { font-family: Arial, sans-serif; text-align:center; padding:40px; background:#f9f9f9; }
-  h1 { color:#2c3e50; }
-  input, select { padding:10px; margin:10px; border-radius:5px; border:1px solid #ccc; }
-  button { padding:12px 25px; background:#2ecc71; color:#fff; border:none; border-radius:5px; cursor:pointer; font-size:16px; }
-  button:hover { background:#27ae60; }
-  #result { margin-top:20px; font-size:18px; color:#34495e; }
-  a.button { display:inline-block; padding:12px 25px; background:#e67e22; color:#fff; text-decoration:none; border-radius:5px; margin:20px 0; }
-  a.button:hover { background:#d35400; }
-  .ad-box { margin:25px auto; width:320px; height:50px; border:1px dashed #999; display:flex; align-items:center; justify-content:center; background:#fff; }
-  .affiliate { margin-top:20px; font-size:16px; color:#2c3e50; }
+body { font-family: Arial, sans-serif; text-align:center; padding:40px; background:#f9f9f9; }
+h1 { color:#2c3e50; }
+input { padding:10px; margin:10px; border-radius:5px; border:1px solid #ccc; }
+button { padding:12px 25px; background:#2ecc71; color:#fff; border:none; border-radius:5px; cursor:pointer; font-size:16px; }
+button:hover { background:#27ae60; }
+#result { margin-top:20px; font-size:18px; color:#34495e; }
+.share { margin-top:15px; display:none; }
+.share a { margin:0 10px; display:inline-block; padding:8px 12px; background:#3498db; color:#fff; border-radius:5px; text-decoration:none; }
+.share a:hover { background:#2980b9; }
+.ad-box { margin:25px auto; width:320px; height:50px; border:1px dashed #999; display:flex; align-items:center; justify-content:center; background:#fff; }
+a.button { display:inline-block; padding:12px 25px; background:#e67e22; color:#fff; text-decoration:none; border-radius:5px; margin:20px 0; }
+a.button:hover { background:#d35400; }
 </style>
 </head>
 <body>
@@ -39,34 +41,46 @@
 
 <a href="life-calculator.html" class="button">Try Life Calculator →</a>
 
-<!-- PROPSELLER ADS UNIT TOP -->
-<div class="ad-box">
-  Your Ad Here (PropellerAds)
+<!-- Ads Placeholder Top -->
+<div class="ad-box">Your Ad Here</div>
+
+<!-- Share buttons -->
+<div class="share" id="shareButtons">
+  <p>Share your result:</p>
+  <a href="#" target="_blank" id="whatsapp">WhatsApp</a>
+  <a href="#" target="_blank" id="facebook">Facebook</a>
+  <a href="#" target="_blank" id="twitter">Twitter</a>
 </div>
 
-<!-- Affiliate Link -->
-<p class="affiliate">
-  <a href="https://www.amazon.com/dp/example" target="_blank" style="color:#e67e22; text-decoration:none; font-weight:bold;">
-    Check out this useful product!
-  </a>
-</p>
-
-<!-- PROPSELLER ADS UNIT BOTTOM -->
-<div class="ad-box">
-  Your Ad Here (PropellerAds)
-</div>
+<!-- Ads Placeholder Bottom -->
+<div class="ad-box">Your Ad Here</div>
 
 <script>
 function calculateAge() {
   let dob = document.getElementById('dob').value;
   if(!dob){document.getElementById('result').innerText="Please enter your date of birth."; return;}
-  let dobDate=new Date(dob), today=new Date();
-  let years=today.getFullYear()-dobDate.getFullYear();
-  let months=today.getMonth()-dobDate.getMonth();
-  let days=today.getDate()-dobDate.getDate();
-  if(days<0){months--;days+=new Date(today.getFullYear(),today.getMonth(),0).getDate();}
-  if(months<0){years--;months+=12;}
-  document.getElementById('result').innerText=`You are ${years} years, ${months} months, and ${days} days old.`;
+  
+  let dobDate = new Date(dob);
+  let today = new Date();
+  let years = today.getFullYear() - dobDate.getFullYear();
+  let months = today.getMonth() - dobDate.getMonth();
+  let days = today.getDate() - dobDate.getDate();
+  if(days<0){months--; days+= new Date(today.getFullYear(), today.getMonth(), 0).getDate();}
+  if(months<0){years--; months+=12;}
+  
+  let resultText = `I am ${years} years, ${months} months, and ${days} days old! Try this Age Calculator too!`;
+  document.getElementById('result').innerText = resultText;
+  
+  // Show share buttons
+  let shareDiv = document.getElementById('shareButtons');
+  shareDiv.style.display = "block";
+  
+  let url = encodeURIComponent("https://shah51214-hue.github.io/age-calculator/");
+  let text = encodeURIComponent(resultText);
+  
+  document.getElementById('whatsapp').href = `https://wa.me/?text=${text} ${url}`;
+  document.getElementById('facebook').href = `https://www.facebook.com/sharer/sharer.php?u=${url}&quote=${text}`;
+  document.getElementById('twitter').href = `https://twitter.com/intent/tweet?text=${text}&url=${url}`;
 }
 </script>
 
