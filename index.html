@@ -30,6 +30,12 @@
     <h1>Age & Life Calculator</h1>
   </header>
 
+  <!-- Introduction for AdSense & Users -->
+  <div class="container">
+    <p>Welcome to our Age & Life Calculator! This tool allows you to calculate your current age and estimate the remaining years of life based on average life expectancy. All calculations are done in your browser — we never store personal data. Enjoy and explore!</p>
+  </div>
+
+  <!-- Calculator -->
   <div class="container">
     <p>Enter your date of birth to calculate your age and remaining life (YYYY-MM-DD):</p>
     <input type="text" id="dob" placeholder="YYYY-MM-DD">
@@ -51,6 +57,7 @@
     </script>
   </div>
 
+  <!-- FAQ -->
   <div class="faq container">
     <h2>Frequently Asked Questions</h2>
     <p><strong>Q: Is this calculator free?</strong><br>A: Yes, it’s completely free to use.</p>
@@ -79,7 +86,7 @@
         return;
       }
 
-      // --- Age calculation ---
+      // Age calculation
       let today = new Date();
       let years = today.getFullYear() - dobDate.getFullYear();
       let months = today.getMonth() - dobDate.getMonth();
@@ -97,8 +104,8 @@
       document.getElementById('ageResult').innerText =
         `You are ${years} years, ${months} months, and ${days} days old.`;
 
-      // --- Remaining life calculation ---
-      let lifeExpectancy = 80; // Average life expectancy
+      // Remaining life calculation
+      let lifeExpectancy = 80; 
       let remainingYears = lifeExpectancy - years;
       let remainingMonths = 12 - months;
       let remainingDays = 30 - days;
