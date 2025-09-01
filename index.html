@@ -4,6 +4,11 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Age & Life Calculator</title>
+
+  <!-- Google AdSense -->
+  <script data-ad-client="ca-pub-5118778152123369" async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
   <style>
     body { font-family: Arial, sans-serif; margin:0; padding:0; background:#f7f7f7; color:#333; text-align:center; display:flex; flex-direction:column; min-height:100vh;}
     header { background:#4CAF50; color:white; padding:15px;}
@@ -16,6 +21,7 @@
     .faq h2 { margin-top:0; color:#4CAF50;}
     .faq p { margin:8px 0;}
     footer { margin-top:auto; background:#333; color:white; padding:10px; font-size:14px;}
+    .ad-container { margin: 20px auto; }
   </style>
 </head>
 <body>
@@ -32,11 +38,25 @@
     <div class="result" id="remaining"></div>
   </div>
 
+  <!-- AdSense Placeholder -->
+  <div class="ad-container">
+    <ins class="adsbygoogle"
+         style="display:block"
+         data-ad-client="ca-pub-5118778152123369"
+         data-ad-slot="1234567890"
+         data-ad-format="auto"
+         data-full-width-responsive="true"></ins>
+    <script>
+         (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+  </div>
+
   <div class="faq container">
     <h2>Frequently Asked Questions</h2>
     <p><strong>Q: Is this calculator free?</strong><br>A: Yes, it’s completely free to use.</p>
     <p><strong>Q: Does it work on mobile?</strong><br>A: Yes, it works on both desktop and mobile devices.</p>
     <p><strong>Q: How accurate is the calculation?</strong><br>A: The calculator uses today’s date and your entered birth date, so it’s fully accurate.</p>
+    <p><strong>Q: Why should I trust this site?</strong><br>A: The calculators are simple, functional, and all data is processed in your browser — we don’t store personal information.</p>
   </div>
 
   <footer>
@@ -59,7 +79,7 @@
         return;
       }
 
-      // Calculate age
+      // --- Age calculation ---
       let today = new Date();
       let years = today.getFullYear() - dobDate.getFullYear();
       let months = today.getMonth() - dobDate.getMonth();
@@ -77,7 +97,7 @@
       document.getElementById('ageResult').innerText =
         `You are ${years} years, ${months} months, and ${days} days old.`;
 
-      // Calculate remaining life
+      // --- Remaining life calculation ---
       let lifeExpectancy = 80; // Average life expectancy
       let remainingYears = lifeExpectancy - years;
       let remainingMonths = 12 - months;
