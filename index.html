@@ -1,88 +1,125 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Age Calculator – Free Online Tool</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Age Calculator</title>
 
-<!-- SEO -->
-<meta name="description" content="Free Age Calculator – instantly calculate your age in years, months, and days.">
-<meta name="keywords" content="age calculator, online age calculator, free age tool, birthday calculator">
+  <!-- Google AdSense -->
+  <meta name="google-adsense-account" content="ca-pub-5118778152123369">
 
-<!-- Social Share -->
-<meta property="og:title" content="Free Age Calculator - Simple Online Tool">
-<meta property="og:description" content="Quickly calculate your exact age in years, months, and days.">
-<meta property="og:url" content="https://shah51214-hue.github.io/age-calculator/">
-<meta property="og:type" content="website">
-
-<style>
-body { font-family: Arial, sans-serif; text-align:center; padding:40px; background:#f9f9f9; }
-h1 { color:#2c3e50; }
-input { padding:10px; margin:10px; border-radius:5px; border:1px solid #ccc; }
-button { padding:12px 25px; background:#2ecc71; color:#fff; border:none; border-radius:5px; cursor:pointer; font-size:16px; }
-button:hover { background:#27ae60; }
-#result { margin-top:20px; font-size:18px; color:#34495e; }
-.share { margin-top:15px; display:none; }
-.share a { margin:0 10px; display:inline-block; padding:8px 12px; background:#3498db; color:#fff; border-radius:5px; text-decoration:none; }
-.share a:hover { background:#2980b9; }
-.ad-box { margin:25px auto; width:320px; height:50px; border:1px dashed #999; display:flex; align-items:center; justify-content:center; background:#fff; }
-a.button { display:inline-block; padding:12px 25px; background:#e67e22; color:#fff; text-decoration:none; border-radius:5px; margin:20px 0; }
-a.button:hover { background:#d35400; }
-</style>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #f7f7f7;
+      color: #333;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+    header {
+      background: #4CAF50;
+      color: white;
+      padding: 15px;
+    }
+    .container {
+      margin: 20px auto;
+      max-width: 500px;
+      padding: 20px;
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    input, button {
+      padding: 10px;
+      margin: 5px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+    button {
+      background: #4CAF50;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #45a049;
+    }
+    .result {
+      margin-top: 15px;
+      font-size: 18px;
+      font-weight: bold;
+    }
+    .faq {
+      margin-top: 40px;
+      text-align: left;
+      background: #fff;
+      padding: 15px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.05);
+    }
+    .faq h2 {
+      margin-top: 0;
+      color: #4CAF50;
+    }
+    .faq p {
+      margin: 8px 0;
+    }
+    footer {
+      margin-top: auto;
+      background: #333;
+      color: white;
+      padding: 10px;
+      font-size: 14px;
+    }
+  </style>
 </head>
 <body>
 
-<h1>Free Age Calculator</h1>
-<p>Enter your date of birth to calculate your exact age:</p>
-<input type="date" id="dob">
-<button onclick="calculateAge()">Calculate Age</button>
+  <header>
+    <h1>Age Calculator</h1>
+  </header>
 
-<div id="result"></div>
+  <div class="container">
+    <p>Enter your date of birth to calculate your age:</p>
+    <input type="date" id="dob">
+    <button onclick="calculateAge()">Calculate</button>
+    <div class="result" id="result"></div>
+  </div>
 
-<a href="life-calculator.html" class="button">Try Life Calculator →</a>
+  <!-- FAQ Section -->
+  <div class="faq container">
+    <h2>Frequently Asked Questions</h2>
+    <p><strong>Q: Is this age calculator free?</strong><br>A: Yes, it’s completely free to use.</p>
+    <p><strong>Q: Does it work on mobile?</strong><br>A: Yes, it works on both desktop and mobile devices.</p>
+    <p><strong>Q: How accurate is the calculation?</strong><br>A: The calculator uses today’s date and your entered birth date, so it’s fully accurate.</p>
+  </div>
 
-<!-- Ads Placeholder Top -->
-<div class="ad-box">Your Ad Here</div>
+  <!-- Footer -->
+  <footer>
+    © 2025 271289.xyz | All Rights Reserved
+  </footer>
 
-<!-- Share buttons -->
-<div class="share" id="shareButtons">
-  <p>Share your result:</p>
-  <a href="#" target="_blank" id="whatsapp">WhatsApp</a>
-  <a href="#" target="_blank" id="facebook">Facebook</a>
-  <a href="#" target="_blank" id="twitter">Twitter</a>
-</div>
-
-<!-- Ads Placeholder Bottom -->
-<div class="ad-box">Your Ad Here</div>
-
-<script>
-function calculateAge() {
-  let dob = document.getElementById('dob').value;
-  if(!dob){document.getElementById('result').innerText="Please enter your date of birth."; return;}
-  
-  let dobDate = new Date(dob);
-  let today = new Date();
-  let years = today.getFullYear() - dobDate.getFullYear();
-  let months = today.getMonth() - dobDate.getMonth();
-  let days = today.getDate() - dobDate.getDate();
-  if(days<0){months--; days+= new Date(today.getFullYear(), today.getMonth(), 0).getDate();}
-  if(months<0){years--; months+=12;}
-  
-  let resultText = `I am ${years} years, ${months} months, and ${days} days old! Try this Age Calculator too!`;
-  document.getElementById('result').innerText = resultText;
-  
-  // Show share buttons
-  let shareDiv = document.getElementById('shareButtons');
-  shareDiv.style.display = "block";
-  
-  let url = encodeURIComponent("https://shah51214-hue.github.io/age-calculator/");
-  let text = encodeURIComponent(resultText);
-  
-  document.getElementById('whatsapp').href = `https://wa.me/?text=${text} ${url}`;
-  document.getElementById('facebook').href = `https://www.facebook.com/sharer/sharer.php?u=${url}&quote=${text}`;
-  document.getElementById('twitter').href = `https://twitter.com/intent/tweet?text=${text}&url=${url}`;
-}
-</script>
+  <script>
+    function calculateAge() {
+      let dob = document.getElementById('dob').value;
+      if (!dob) {
+        document.getElementById('result').innerText = "Please select your date of birth.";
+        return;
+      }
+      let dobDate = new Date(dob);
+      let today = new Date();
+      let age = today.getFullYear() - dobDate.getFullYear();
+      let m = today.getMonth() - dobDate.getMonth();
+      if (m < 0 || (m === 0 && today.getDate() < dobDate.getDate())) {
+        age--;
+      }
+      document.getElementById('result').innerText = "You are " + age + " years old.";
+    }
+  </script>
 
 </body>
 </html>
