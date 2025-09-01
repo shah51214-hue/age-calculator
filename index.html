@@ -3,121 +3,93 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Age Calculator</title>
-
-  <!-- Google AdSense -->
-  <meta name="google-adsense-account" content="ca-pub-5118778152123369">
-
+  <title>Age & Life Calculator</title>
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-      background: #f7f7f7;
-      color: #333;
-      text-align: center;
-      display: flex;
-      flex-direction: column;
-      min-height: 100vh;
-    }
-    header {
-      background: #4CAF50;
-      color: white;
-      padding: 15px;
-    }
-    .container {
-      margin: 20px auto;
-      max-width: 500px;
-      padding: 20px;
-      background: white;
-      border-radius: 8px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
-    }
-    input, button {
-      padding: 10px;
-      margin: 5px;
-      border-radius: 5px;
-      border: 1px solid #ccc;
-    }
-    button {
-      background: #4CAF50;
-      color: white;
-      border: none;
-      cursor: pointer;
-    }
-    button:hover {
-      background: #45a049;
-    }
-    .result {
-      margin-top: 15px;
-      font-size: 18px;
-      font-weight: bold;
-    }
-    .faq {
-      margin-top: 40px;
-      text-align: left;
-      background: #fff;
-      padding: 15px;
-      border-radius: 8px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.05);
-    }
-    .faq h2 {
-      margin-top: 0;
-      color: #4CAF50;
-    }
-    .faq p {
-      margin: 8px 0;
-    }
-    footer {
-      margin-top: auto;
-      background: #333;
-      color: white;
-      padding: 10px;
-      font-size: 14px;
-    }
+    body { font-family: Arial, sans-serif; margin:0; padding:0; background:#f7f7f7; color:#333; text-align:center; display:flex; flex-direction:column; min-height:100vh;}
+    header { background:#4CAF50; color:white; padding:15px;}
+    .container { margin:20px auto; max-width:500px; padding:20px; background:white; border-radius:8px; box-shadow:0 0 10px rgba(0,0,0,0.1);}
+    input, button { padding:10px; margin:5px; border-radius:5px; border:1px solid #ccc;}
+    button { background:#4CAF50; color:white; border:none; cursor:pointer;}
+    button:hover { background:#45a049;}
+    .result { margin-top:15px; font-size:18px; font-weight:bold;}
+    .faq { margin-top:40px; text-align:left; background:#fff; padding:15px; border-radius:8px; box-shadow:0 0 10px rgba(0,0,0,0.05);}
+    .faq h2 { margin-top:0; color:#4CAF50;}
+    .faq p { margin:8px 0;}
+    footer { margin-top:auto; background:#333; color:white; padding:10px; font-size:14px;}
   </style>
 </head>
 <body>
 
   <header>
-    <h1>Age Calculator</h1>
+    <h1>Age & Life Calculator</h1>
   </header>
 
   <div class="container">
-    <p>Enter your date of birth to calculate your age:</p>
-    <input type="date" id="dob">
-    <button onclick="calculateAge()">Calculate</button>
-    <div class="result" id="result"></div>
+    <p>Enter your date of birth to calculate your age and remaining life (YYYY-MM-DD):</p>
+    <input type="text" id="dob" placeholder="YYYY-MM-DD">
+    <button onclick="calculateAll()">Calculate</button>
+    <div class="result" id="ageResult"></div>
+    <div class="result" id="remaining"></div>
   </div>
 
-  <!-- FAQ Section -->
   <div class="faq container">
     <h2>Frequently Asked Questions</h2>
-    <p><strong>Q: Is this age calculator free?</strong><br>A: Yes, it’s completely free to use.</p>
+    <p><strong>Q: Is this calculator free?</strong><br>A: Yes, it’s completely free to use.</p>
     <p><strong>Q: Does it work on mobile?</strong><br>A: Yes, it works on both desktop and mobile devices.</p>
     <p><strong>Q: How accurate is the calculation?</strong><br>A: The calculator uses today’s date and your entered birth date, so it’s fully accurate.</p>
   </div>
 
-  <!-- Footer -->
   <footer>
     © 2025 271289.xyz | All Rights Reserved
   </footer>
 
   <script>
-    function calculateAge() {
+    function calculateAll() {
       let dob = document.getElementById('dob').value;
       if (!dob) {
-        document.getElementById('result').innerText = "Please select your date of birth.";
+        document.getElementById('ageResult').innerText = "Please enter your date of birth.";
+        document.getElementById('remaining').innerText = "";
         return;
       }
+
       let dobDate = new Date(dob);
-      let today = new Date();
-      let age = today.getFullYear() - dobDate.getFullYear();
-      let m = today.getMonth() - dobDate.getMonth();
-      if (m < 0 || (m === 0 && today.getDate() < dobDate.getDate())) {
-        age--;
+      if (isNaN(dobDate)) {
+        document.getElementById('ageResult').innerText = "Invalid date format. Use YYYY-MM-DD.";
+        document.getElementById('remaining').innerText = "";
+        return;
       }
-      document.getElementById('result').innerText = "You are " + age + " years old.";
+
+      // Calculate age
+      let today = new Date();
+      let years = today.getFullYear() - dobDate.getFullYear();
+      let months = today.getMonth() - dobDate.getMonth();
+      let days = today.getDate() - dobDate.getDate();
+
+      if (days < 0) {
+        months--;
+        days += new Date(today.getFullYear(), today.getMonth(), 0).getDate();
+      }
+      if (months < 0) {
+        years--;
+        months += 12;
+      }
+
+      document.getElementById('ageResult').innerText =
+        `You are ${years} years, ${months} months, and ${days} days old.`;
+
+      // Calculate remaining life
+      let lifeExpectancy = 80; // Average life expectancy
+      let remainingYears = lifeExpectancy - years;
+      let remainingMonths = 12 - months;
+      let remainingDays = 30 - days;
+
+      if (remainingDays === 30) { remainingDays = 0; remainingMonths--; }
+      if (remainingMonths === 12) { remainingMonths = 0; remainingYears--; }
+
+      if (remainingYears < 0) remainingYears = remainingMonths = remainingDays = 0;
+
+      document.getElementById('remaining').innerText =
+        `Based on an average life expectancy of ${lifeExpectancy} years, you have roughly ${remainingYears} years, ${remainingMonths} months, and ${remainingDays} days left to live.`;
     }
   </script>
 
