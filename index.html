@@ -5,47 +5,104 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Age & Life Calculator</title>
   <style>
-    body { font-family: Arial, sans-serif; text-align: center; margin: 40px; background: #f9f9f9; }
-    h1 { color: #333; }
-    input, button { padding: 10px; margin: 10px; }
-    footer { margin-top: 40px; font-size: 14px; color: #555; }
-    nav a { margin: 0 10px; text-decoration: none; color: #007BFF; }
-    nav a:hover { text-decoration: underline; }
+    body {
+      font-family: Arial, sans-serif;
+      background: #f9f9f9;
+      color: #333;
+      text-align: center;
+      padding: 20px;
+    }
+    .container {
+      max-width: 600px;
+      margin: auto;
+      background: #fff;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0px 4px 10px rgba(0,0,0,0.1);
+    }
+    h1 {
+      color: #222;
+    }
+    input, button {
+      padding: 10px;
+      margin: 10px 0;
+      font-size: 16px;
+    }
+    button {
+      background: #0073e6;
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #005bb5;
+    }
+    .result {
+      margin-top: 20px;
+      font-weight: bold;
+      color: #444;
+    }
+    footer {
+      margin-top: 30px;
+      font-size: 14px;
+      color: #555;
+    }
+    footer a {
+      margin: 0 10px;
+      text-decoration: none;
+      color: #0073e6;
+    }
   </style>
+
+  <!-- ✅ Google AdSense global script (do not edit) -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5118778152123369"
+     crossorigin="anonymous"></script>
+</head>
+<body>
+  <div class="container">
+    <h1>Age & Life Calculator</h1>
+    <p>Enter your date of birth to calculate your age:</p>
+    <input type="date" id="dob">
+    <br>
+    <button onclick="calculateAge()">Calculate Age</button>
+    <div class="result" id="result"></div>
+
+    <h2>Frequently Asked Questions</h2>
+    <p><strong>Q:</strong> Is this calculator free?<br><strong>A:</strong> Yes, it’s completely free to use.</p>
+    <p><strong>Q:</strong> Does it work on mobile?<br><strong>A:</strong> Yes, it works on both desktop and mobile devices.</p>
+    <p><strong>Q:</strong> How accurate is the calculation?<br><strong>A:</strong> The calculator uses today’s date and your entered birth date, so it’s fully accurate.</p>
+
+    <footer>
+      <p>© 2025 271289.xyz | All Rights Reserved</p>
+      <a href="about.html">About Us</a> |
+      <a href="privacy.html">Privacy Policy</a> |
+      <a href="terms.html">Terms</a> |
+      <a href="faq.html">FAQ</a>
+    </footer>
+  </div>
+
   <script>
     function calculateAge() {
       const dob = document.getElementById("dob").value;
-      if (!dob) return;
+      if (!dob) {
+        document.getElementById("result").innerText = "Please enter your date of birth.";
+        return;
+      }
+
       const birthDate = new Date(dob);
       const today = new Date();
+
       let age = today.getFullYear() - birthDate.getFullYear();
-      const m = today.getMonth() - birthDate.getMonth();
-      if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+      const monthDiff = today.getMonth() - birthDate.getMonth();
+      if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthDate.getDate())) {
         age--;
       }
-      document.getElementById("result").innerText = "You are " + age + " years old.";
-      document.getElementById("life").innerText = "Estimated years left to live: " + (80 - age);
+
+      const yearsLeft = 80 - age; // assuming life expectancy of 80
+      document.getElementById("result").innerText =
+        `You are ${age} years old. Estimated years left to live: ${yearsLeft > 0 ? yearsLeft : 0}`;
     }
   </script>
-</head>
-<body>
-  <h1>Age & Life Calculator</h1>
-  <p>Enter your date of birth to calculate your age:</p>
-  <input type="date" id="dob">
-  <button onclick="calculateAge()">Calculate Age</button>
-  <p id="result"></p>
-  <p id="life"></p>
-
-  <nav>
-    <a href="index.html">Home</a> |
-    <a href="about.html">About</a> |
-    <a href="faq.html">FAQ</a> |
-    <a href="privacy.html">Privacy Policy</a> |
-    <a href="terms.html">Terms</a>
-  </nav>
-
-  <footer>
-    © 2025 271289.xyz | All Rights Reserved
-  </footer>
 </body>
 </html>
