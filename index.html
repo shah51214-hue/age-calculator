@@ -8,42 +8,59 @@
   <style>
     body {
       font-family: Arial, sans-serif;
-      max-width: 900px;
-      margin: 40px auto;
-      padding: 0 16px;
+      background: #f9f9fb;
+      margin: 0;
+      padding: 0;
       line-height: 1.6;
       color: #333;
     }
-    header, footer {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      margin-bottom: 20px;
+    header {
+      background: linear-gradient(90deg, #007acc, #005f99);
+      color: #fff;
+      padding: 20px;
+      text-align: center;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 2rem;
+    }
+    nav {
+      margin-top: 10px;
     }
     nav a {
-      margin-right: 15px;
+      margin: 0 12px;
       text-decoration: none;
-      color: #007acc;
+      color: #fff;
       font-weight: 500;
     }
     nav a:hover {
       text-decoration: underline;
     }
-    h1, h2 {
-      color: #222;
+    main {
+      max-width: 800px;
+      margin: 30px auto;
+      padding: 20px;
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+    h2 {
+      color: #005f99;
     }
     input, button {
-      padding: 8px 12px;
-      margin: 10px 0;
+      padding: 10px;
       font-size: 1rem;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 4px;
     }
     button {
       cursor: pointer;
       background: #007acc;
       color: #fff;
       border: none;
-      border-radius: 4px;
+      font-weight: bold;
+      transition: background 0.3s;
     }
     button:hover {
       background: #005f99;
@@ -51,17 +68,46 @@
     .result {
       margin-top: 20px;
       font-weight: bold;
-      color: #000;
+      color: #007acc;
+      font-size: 1.2rem;
+    }
+    /* FAQ Styles */
+    .faq-item {
+      margin: 10px 0;
+      border-bottom: 1px solid #ddd;
+      padding-bottom: 10px;
+    }
+    .faq-question {
+      background: #f1f5f9;
+      padding: 12px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: bold;
+      color: #005f99;
+      transition: background 0.3s;
+    }
+    .faq-question:hover {
+      background: #e2e8f0;
+    }
+    .faq-answer {
+      display: none;
+      padding: 10px;
+      margin-top: 5px;
+      background: #fff;
+      border-left: 3px solid #007acc;
+      border-radius: 4px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.05);
     }
     footer {
-      border-top: 1px solid #ddd;
-      padding-top: 15px;
-      margin-top: 30px;
-      font-size: 0.9rem;
+      background: #005f99;
+      color: #fff;
+      text-align: center;
+      padding: 15px;
+      margin-top: 40px;
     }
     footer a {
-      margin-left: 10px;
-      color: #007acc;
+      color: #ffdd57;
+      margin: 0 8px;
       text-decoration: none;
     }
     footer a:hover {
@@ -90,25 +136,30 @@
 
     <section>
       <h2>Frequently Asked Questions</h2>
-      <p><strong>Q:</strong> Is this calculator free?<br>
-      <strong>A:</strong> Yes, it’s completely free to use.</p>
 
-      <p><strong>Q:</strong> Does it work on mobile?<br>
-      <strong>A:</strong> Yes, it works on both desktop and mobile devices.</p>
+      <div class="faq-item">
+        <div class="faq-question">Q: Is this calculator free?</div>
+        <div class="faq-answer">Yes, it’s completely free to use.</div>
+      </div>
 
-      <p><strong>Q:</strong> How accurate is the calculation?<br>
-      <strong>A:</strong> The calculator uses today’s date and your entered birth date, so it’s fully accurate.</p>
+      <div class="faq-item">
+        <div class="faq-question">Q: Does it work on mobile?</div>
+        <div class="faq-answer">Yes, it works on both desktop and mobile devices.</div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question">Q: How accurate is the calculation?</div>
+        <div class="faq-answer">The calculator uses today’s date and your entered birth date, so it’s fully accurate.</div>
+      </div>
     </section>
   </main>
 
   <footer>
-    <small>© 2025 271289.xyz | All Rights Reserved</small>
-    <div>
-      <a href="about.html">About Us</a> |
-      <a href="privacy.html">Privacy Policy</a> |
-      <a href="terms.html">Terms</a> |
-      <a href="faq.html">FAQ</a>
-    </div>
+    <small>© 2025 271289.xyz | All Rights Reserved</small><br>
+    <a href="about.html">About Us</a> |
+    <a href="privacy.html">Privacy Policy</a> |
+    <a href="terms.html">Terms</a> |
+    <a href="faq.html">FAQ</a>
   </footer>
 
   <script>
@@ -138,6 +189,14 @@
       document.getElementById("result").innerText =
         `🎉 You are ${years} years, ${months} months, and ${days} days old.`;
     }
+
+    // FAQ toggle
+    document.querySelectorAll(".faq-question").forEach(item => {
+      item.addEventListener("click", () => {
+        const answer = item.nextElementSibling;
+        answer.style.display = answer.style.display === "block" ? "none" : "block";
+      });
+    });
   </script>
 </body>
 </html>
