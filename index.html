@@ -3,26 +3,26 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Age Calculator</title>
-  <meta name="description" content="Free online age calculator to find your exact age in years, months, and days." />
-  <link rel="canonical" href="https://shah51214-hue.github.io/age-calculator/" />
+  <title>Age & Life Calculator</title>
+  <meta name="description" content="Free Age & Life Calculator to calculate your exact age in years, months, and days." />
   <style>
     body {
-      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      font-family: Arial, sans-serif;
       max-width: 900px;
       margin: 40px auto;
       padding: 0 16px;
       line-height: 1.6;
+      color: #333;
     }
     header, footer {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      gap: 10px;
       flex-wrap: wrap;
+      margin-bottom: 20px;
     }
     nav a {
-      margin-right: 12px;
+      margin-right: 15px;
       text-decoration: none;
       color: #007acc;
       font-weight: 500;
@@ -30,27 +30,48 @@
     nav a:hover {
       text-decoration: underline;
     }
-    main {
-      margin-top: 30px;
-    }
-    h1 {
+    h1, h2 {
       color: #222;
     }
     input, button {
       padding: 8px 12px;
-      margin-top: 10px;
+      margin: 10px 0;
       font-size: 1rem;
+    }
+    button {
+      cursor: pointer;
+      background: #007acc;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+    }
+    button:hover {
+      background: #005f99;
     }
     .result {
       margin-top: 20px;
       font-weight: bold;
-      color: #333;
+      color: #000;
+    }
+    footer {
+      border-top: 1px solid #ddd;
+      padding-top: 15px;
+      margin-top: 30px;
+      font-size: 0.9rem;
+    }
+    footer a {
+      margin-left: 10px;
+      color: #007acc;
+      text-decoration: none;
+    }
+    footer a:hover {
+      text-decoration: underline;
     }
   </style>
 </head>
 <body>
   <header>
-    <h1>Age Calculator</h1>
+    <h1>Age & Life Calculator</h1>
     <nav>
       <a href="index.html">Home</a>
       <a href="about.html">About</a>
@@ -60,29 +81,46 @@
   </header>
 
   <main>
-    <h2>Calculate Your Age</h2>
-    <p>Enter your date of birth below to calculate your exact age in years, months, and days.</p>
-
-    <label for="dob">Date of Birth:</label><br>
+    <h2>Enter your date of birth to calculate your age:</h2>
+    <label for="dob">Date of Birth (mm/dd/yyyy):</label><br>
     <input type="date" id="dob" />
-    <button onclick="calculateAge()">Calculate</button>
+    <button onclick="calculateAge()">Calculate Age</button>
 
     <div id="result" class="result"></div>
+
+    <section>
+      <h2>Frequently Asked Questions</h2>
+      <p><strong>Q:</strong> Is this calculator free?<br>
+      <strong>A:</strong> Yes, it’s completely free to use.</p>
+
+      <p><strong>Q:</strong> Does it work on mobile?<br>
+      <strong>A:</strong> Yes, it works on both desktop and mobile devices.</p>
+
+      <p><strong>Q:</strong> How accurate is the calculation?<br>
+      <strong>A:</strong> The calculator uses today’s date and your entered birth date, so it’s fully accurate.</p>
+    </section>
   </main>
 
   <footer>
-    <small>&copy; 2025 Age Calculator. All rights reserved.</small>
+    <small>© 2025 271289.xyz | All Rights Reserved</small>
+    <div>
+      <a href="about.html">About Us</a> |
+      <a href="privacy.html">Privacy Policy</a> |
+      <a href="terms.html">Terms</a> |
+      <a href="faq.html">FAQ</a>
+    </div>
   </footer>
 
   <script>
     function calculateAge() {
       const dob = document.getElementById("dob").value;
       if (!dob) {
-        document.getElementById("result").innerText = "Please select a date of birth.";
+        document.getElementById("result").innerText = "⚠️ Please select your date of birth.";
         return;
       }
       const birthDate = new Date(dob);
       const today = new Date();
+
       let years = today.getFullYear() - birthDate.getFullYear();
       let months = today.getMonth() - birthDate.getMonth();
       let days = today.getDate() - birthDate.getDate();
@@ -98,7 +136,7 @@
       }
 
       document.getElementById("result").innerText =
-        `You are ${years} years, ${months} months, and ${days} days old.`;
+        `🎉 You are ${years} years, ${months} months, and ${days} days old.`;
     }
   </script>
 </body>
