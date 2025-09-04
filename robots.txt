@@ -1,5 +1,10 @@
 User-agent: *
 Allow: /
 
+# Block crawl of unnecessary files/folders (optional, for cleanliness)
+Disallow: /cgi-bin/
+Disallow: /tmp/
+Disallow: /admin/
+
 # Sitemap location
 Sitemap: https://271289.xyz/sitemap.xml
