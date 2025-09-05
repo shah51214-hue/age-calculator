@@ -1,5 +1,3 @@
 User-agent: *
 Allow: /
-
-# Sitemap location
-Sitemap: https://271289.xyz/sitemap.xml
+Sitemap: https://shah51214-hue.github.io/age-calculator/sitemap.xml
