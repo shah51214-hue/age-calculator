@@ -3,9 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Life Calculator – Estimate Remaining Years</title>
-  <meta name="description" content="Fun Life Calculator tool. Estimate your remaining years based on age and lifestyle. For entertainment only.">
-  <meta name="keywords" content="Life Calculator, Life Expectancy Calculator, Fun Age Tool, Remaining Life">
+  <title>Life Calculator – Estimate Your Remaining Years</title>
+
+  <meta name="description" content="Fun Life Calculator to estimate your remaining years based on your lifestyle.">
+  <meta name="keywords" content="Life Calculator, Remaining Years, Fun Calculator, Online Tools">
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://yourdomain.com/life-calculator.html">
 
@@ -52,19 +53,19 @@
   </select><br>
   <label>Exercise regularly?</label>
   <select id="exercise">
-    <option value="yes">Yes</option>
     <option value="no">No</option>
+    <option value="yes">Yes</option>
   </select><br>
-
   <button onclick="calculateLife()">Calculate Life Expectancy</button>
 
   <div id="result"></div>
-  <p class="disclaimer">⚠️ This calculator is just for fun and entertainment, not medical advice.</p>
   <div class="ad-box">Your Ad Here</div>
+
+  <p class="disclaimer">⚠️ This calculator is just for fun and entertainment purposes, not medical advice.</p>
 </main>
 
 <footer>
-  <p>© 2025 My Tools | All Rights Reserved.</p>
+  <p>© 2025 Ammar Abbas | All Rights Reserved.</p>
 </footer>
 
 <script>
@@ -74,8 +75,8 @@ function calculateLife() {
   let birth=new Date(dob), today=new Date();
 
   let age=today.getFullYear()-birth.getFullYear();
-  let m = today.getMonth()-birth.getMonth();
-  if(m<0 || (m===0 && today.getDate()<birth.getDate())) age--;
+  let m = today.getMonth() - birth.getMonth();
+  if (m < 0 || (m === 0 && today.getDate() < birth.getDate())) { age--; }
 
   let smoke=document.getElementById('smoke').value;
   let exercise=document.getElementById('exercise').value;
@@ -85,7 +86,7 @@ function calculateLife() {
   if(exercise==="no") life-=5;
 
   let remaining=life-age;
-  if(remaining<0) remaining=0;
+  remaining=remaining<0?0:remaining;
 
   document.getElementById('result').innerText =
     `Your Age: ${age} years\nEstimated Remaining Life: ${remaining} years`;
