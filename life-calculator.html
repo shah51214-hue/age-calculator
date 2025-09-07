@@ -1,118 +1,83 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Life Calculator – Fun Life Expectancy Estimator</title>
-
-<style>
-body { font-family: Arial, sans-serif; text-align:center; padding:40px; background:#f4f8fb; }
-h1 { color:#2c3e50; margin-bottom:10px; }
-p.subtitle { color:#555; font-size:16px; margin-bottom:25px; }
-label { display:block; margin:10px 0 5px; font-weight:bold; }
-input, select { padding:10px; margin:5px 0 15px; border-radius:5px; border:1px solid #ccc; width:220px; }
-button { padding:12px 25px; background:#3498db; color:#fff; border:none; border-radius:5px; cursor:pointer; font-size:16px; }
-button:hover { background:#2980b9; }
-#result { margin-top:20px; font-size:18px; color:#34495e; white-space:pre-line; }
-.progress-container { width:60%; margin:20px auto; background:#ddd; border-radius:20px; overflow:hidden; height:25px; }
-.progress-bar { height:100%; background:#27ae60; text-align:center; color:#fff; line-height:25px; font-size:14px; }
-.share { margin-top:20px; display:none; }
-.share a { margin:0 10px; display:inline-block; padding:8px 12px; background:#3498db; color:#fff; border-radius:5px; text-decoration:none; }
-.share a:hover { background:#2980b9; }
-.ad-box { margin:25px auto; width:320px; height:50px; border:1px dashed #999; display:flex; align-items:center; justify-content:center; background:#fff; }
-.disclaimer { margin-top:25px; font-size:14px; color:#888; }
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Life Calculator – My Tools</title>
+  <style>
+    body { font-family: Arial, sans-serif; text-align:center; margin:0; background:#f5fff5; }
+    header { background:#2ecc71; padding:15px; color:white; text-align:left; display:flex; justify-content:space-between; align-items:center; }
+    header h2 { margin:0; }
+    nav a { margin:0 10px; color:white; text-decoration:none; font-weight:bold; }
+    nav a:hover { text-decoration:underline; }
+    h1 { color:#2c3e50; margin-top:30px; }
+    input, select { padding:10px; margin:10px; border-radius:5px; border:1px solid #ccc; }
+    button { padding:12px 25px; background:#2ecc71; color:#fff; border:none; border-radius:5px; cursor:pointer; font-size:16px; }
+    button:hover { background:#27ae60; }
+    #result { margin-top:20px; font-size:18px; color:#34495e; white-space:pre-line; }
+    .disclaimer { margin-top:20px; font-size:14px; color:#888; }
+    .ad-box { margin:25px auto; width:320px; height:50px; border:1px dashed #999; display:flex; align-items:center; justify-content:center; background:#fff; }
+  </style>
 </head>
 <body>
 
+<header>
+  <h2>My Tools</h2>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="life-calculator.html">Life Calculator</a>
+    <a href="#">About</a>
+    <a href="#">Contact</a>
+  </nav>
+</header>
+
 <h1>Life Calculator</h1>
-<p class="subtitle">Estimate your age, remaining years, and life expectancy (just for fun 🎉)</p>
+<p>Estimate your age, remaining years, and life expectancy (just for fun 🎉)</p>
 
-<form onsubmit="event.preventDefault(); calculateLife();">
-  <label for="dob">Date of Birth:</label>
-  <input type="date" id="dob" required><br>
-
-  <label for="smoke">Do you smoke?</label>
-  <select id="smoke">
-    <option value="no">No</option>
-    <option value="yes">Yes</option>
-  </select><br>
-
-  <label for="exercise">Exercise regularly?</label>
-  <select id="exercise">
-    <option value="no">No</option>
-    <option value="yes">Yes</option>
-  </select><br>
-
-  <button type="submit">Calculate Life Expectancy</button>
-</form>
+<label>Date of Birth:</label>
+<input type="date" id="dob"><br>
+<label>Do you smoke?</label>
+<select id="smoke">
+  <option value="no">No</option>
+  <option value="yes">Yes</option>
+</select><br>
+<label>Exercise regularly?</label>
+<select id="exercise">
+  <option value="no">No</option>
+  <option value="yes">Yes</option>
+</select><br>
+<button onclick="calculateLife()">Calculate Life Expectancy</button>
 
 <div id="result"></div>
-<div class="progress-container" style="display:none;">
-  <div id="lifeBar" class="progress-bar"></div>
-</div>
 
-<!-- Ads Placeholder Top -->
+<div class="ad-box">Your Ad Here</div>
 <div class="ad-box">Your Ad Here</div>
 
-<!-- Share buttons -->
-<div class="share" id="shareButtons">
-  <p>📢 Share your result:</p>
-  <a href="#" target="_blank" id="whatsapp">WhatsApp</a>
-  <a href="#" target="_blank" id="facebook">Facebook</a>
-  <a href="#" target="_blank" id="twitter">Twitter</a>
-</div>
-
-<!-- Ads Placeholder Bottom -->
-<div class="ad-box">Your Ad Here</div>
-
-<p class="disclaimer">⚠️ Disclaimer: This calculator is for fun and entertainment only. It is not medical advice.</p>
+<p class="disclaimer">⚠️ This calculator is just for fun and entertainment purposes, not medical advice.</p>
 
 <script>
 function calculateLife() {
   let dob=document.getElementById('dob').value;
   if(!dob){document.getElementById('result').innerText="Enter your date of birth."; return;}
   let birth=new Date(dob), today=new Date();
-  
-  // Calculate age properly
+
+  // Age calculation
   let age=today.getFullYear()-birth.getFullYear();
-  let m = today.getMonth() - birth.getMonth();
-  if (m < 0 || (m === 0 && today.getDate() < birth.getDate())) {
-    age--;
-  }
+  let m=today.getMonth()-birth.getMonth();
+  if(m<0 || (m===0 && today.getDate()<birth.getDate())) age--;
 
   // Lifestyle adjustments
   let smoke=document.getElementById('smoke').value;
   let exercise=document.getElementById('exercise').value;
-  let life=80; // baseline life expectancy
+  let life=80;
   if(smoke==="yes") life-=10;
   if(exercise==="no") life-=5;
 
-  // Calculate remaining years
   let remaining=life-age;
   remaining=remaining<0?0:remaining;
-  
-  let resultText=`Your Age: ${age} years\nEstimated Life Expectancy: ${life} years\nEstimated Remaining Life: ${remaining} years`;
-  document.getElementById('result').innerText=resultText;
 
-  // Progress bar
-  let bar=document.getElementById('lifeBar');
-  let percent=(age/life)*100;
-  percent=percent>100?100:percent;
-  bar.style.width=percent+"%";
-  bar.innerText=Math.round(percent)+"% lived";
-  document.querySelector(".progress-container").style.display="block";
-  
-  // Show share buttons
-  let shareDiv = document.getElementById('shareButtons');
-  shareDiv.style.display = "block";
-  
-  let url = encodeURIComponent("https://shah51214-hue.github.io/age-calculator/life-calculator.html");
-  let text = encodeURIComponent(resultText + " 🎉 Try this Life Calculator!");
-  
-  document.getElementById('whatsapp').href = `https://wa.me/?text=${text} ${url}`;
-  document.getElementById('facebook').href = `https://www.facebook.com/sharer/sharer.php?u=${url}&quote=${text}`;
-  document.getElementById('twitter').href = `https://twitter.com/intent/tweet?text=${text}&url=${url}`;
+  let resultText=`Your Age: ${age} years\nEstimated Remaining Life: ${remaining} years\nLife Expectancy: ${life} years`;
+  document.getElementById('result').innerText=resultText;
 }
 </script>
 
