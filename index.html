@@ -3,44 +3,56 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Age Calculator – My Tools</title>
+  <title>Age Calculator – Calculate Your Exact Age</title>
+  <meta name="description" content="Free Age Calculator online. Instantly calculate your exact age in years, months, and days.">
+  <meta name="keywords" content="Age Calculator, Calculate Age, Birthday Calculator, Exact Age Tool, Online Calculator">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://yourdomain.com/index.html">
+
   <style>
-    body { font-family: Arial, sans-serif; text-align:center; margin:0; background:#f5fff5; }
-    header { background:#2ecc71; padding:15px; color:white; text-align:left; display:flex; justify-content:space-between; align-items:center; }
-    header h2 { margin:0; }
-    nav a { margin:0 10px; color:white; text-decoration:none; font-weight:bold; }
+    body { font-family: Arial, sans-serif; margin:0; padding:0; background:#f9f9f9; }
+    header { background:#27ae60; padding:15px; text-align:center; }
+    header h1 { margin:0; color:#fff; }
+    nav { background:#2c3e50; padding:10px; text-align:center; }
+    nav a { color:#fff; margin:0 15px; text-decoration:none; font-weight:bold; }
     nav a:hover { text-decoration:underline; }
-    h1 { color:#2c3e50; margin-top:30px; }
+    main { text-align:center; padding:40px; }
     input { padding:10px; margin:10px; border-radius:5px; border:1px solid #ccc; }
-    button { padding:12px 25px; background:#2ecc71; color:#fff; border:none; border-radius:5px; cursor:pointer; font-size:16px; }
-    button:hover { background:#27ae60; }
+    button { padding:12px 25px; background:#27ae60; color:#fff; border:none; border-radius:5px; cursor:pointer; font-size:16px; }
+    button:hover { background:#219150; }
     #result { margin-top:20px; font-size:18px; color:#34495e; }
     .ad-box { margin:25px auto; width:320px; height:50px; border:1px dashed #999; display:flex; align-items:center; justify-content:center; background:#fff; }
+    footer { background:#2c3e50; color:#fff; padding:15px; text-align:center; margin-top:40px; }
   </style>
 </head>
 <body>
 
 <header>
-  <h2>My Tools</h2>
-  <nav>
-    <a href="index.html">Home</a>
-    <a href="life-calculator.html">Life Calculator</a>
-    <a href="#">About</a>
-    <a href="#">Contact</a>
-  </nav>
+  <h1>Age Calculator</h1>
 </header>
 
-<h1>Age Calculator</h1>
-<p>Find out your exact age in years, months, and days.</p>
+<nav>
+  <a href="index.html">Home</a>
+  <a href="life-calculator.html">Life Calculator</a>
+  <a href="blog.html">Blog</a>
+  <a href="about.html">About</a>
+  <a href="contact.html">Contact</a>
+</nav>
 
-<label>Date of Birth:</label>
-<input type="date" id="dob"><br>
-<button onclick="calculateAge()">Calculate Age</button>
+<main>
+  <p>Calculate your exact age in years, months, and days instantly.</p>
 
-<div id="result"></div>
+  <label>Date of Birth:</label>
+  <input type="date" id="dob"><br>
+  <button onclick="calculateAge()">Calculate Age</button>
 
-<div class="ad-box">Your Ad Here</div>
-<div class="ad-box">Your Ad Here</div>
+  <div id="result"></div>
+  <div class="ad-box">Your Ad Here</div>
+</main>
+
+<footer>
+  <p>© 2025 My Tools | All Rights Reserved.</p>
+</footer>
 
 <script>
 function calculateAge() {
@@ -48,20 +60,15 @@ function calculateAge() {
   if(!dob){document.getElementById('result').innerText="Enter your date of birth."; return;}
   let birth=new Date(dob), today=new Date();
 
-  let years=today.getFullYear()-birth.getFullYear();
-  let months=today.getMonth()-birth.getMonth();
-  let days=today.getDate()-birth.getDate();
+  let ageY = today.getFullYear()-birth.getFullYear();
+  let ageM = today.getMonth()-birth.getMonth();
+  let ageD = today.getDate()-birth.getDate();
 
-  if(days<0){
-    months--;
-    days+=new Date(today.getFullYear(), today.getMonth(), 0).getDate();
-  }
-  if(months<0){
-    years--;
-    months+=12;
-  }
+  if(ageD < 0){ ageM--; ageD += new Date(today.getFullYear(), today.getMonth(), 0).getDate(); }
+  if(ageM < 0){ ageY--; ageM += 12; }
 
-  document.getElementById('result').innerText=`Your Age: ${years} years, ${months} months, ${days} days`;
+  document.getElementById('result').innerText =
+    `Your Age: ${ageY} years, ${ageM} months, ${ageD} days`;
 }
 </script>
 
