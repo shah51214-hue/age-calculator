@@ -12,6 +12,7 @@ input, select { padding:10px; margin:10px; border-radius:5px; border:1px solid #
 button { padding:12px 25px; background:#3498db; color:#fff; border:none; border-radius:5px; cursor:pointer; font-size:16px; }
 button:hover { background:#2980b9; }
 #result { margin-top:20px; font-size:18px; color:#34495e; }
+.disclaimer { margin-top:20px; font-size:14px; color:#888; }
 .share { margin-top:15px; display:none; }
 .share a { margin:0 10px; display:inline-block; padding:8px 12px; background:#3498db; color:#fff; border-radius:5px; text-decoration:none; }
 .share a:hover { background:#2980b9; }
@@ -53,21 +54,34 @@ button:hover { background:#2980b9; }
 <!-- Ads Placeholder Bottom -->
 <div class="ad-box">Your Ad Here</div>
 
+<!-- Disclaimer -->
+<p class="disclaimer">⚠️ This calculator is just for fun and entertainment purposes, not medical advice.</p>
+
 <script>
 function calculateLife() {
   let dob=document.getElementById('dob').value;
   if(!dob){document.getElementById('result').innerText="Enter your date of birth."; return;}
   let birth=new Date(dob), today=new Date();
+  
+  // Calculate current age
   let age=today.getFullYear()-birth.getFullYear();
+  let m = today.getMonth() - birth.getMonth();
+  if (m < 0 || (m === 0 && today.getDate() < birth.getDate())) {
+    age--;
+  }
+
+  // Lifestyle adjustments
   let smoke=document.getElementById('smoke').value;
   let exercise=document.getElementById('exercise').value;
-  let life=80; // baseline
+  let life=80; // baseline life expectancy
   if(smoke==="yes") life-=10;
   if(exercise==="no") life-=5;
+
+  // Calculate remaining years
   let remaining=life-age;
   remaining=remaining<0?0:remaining;
   
-  let resultText=`Estimated remaining years: ${remaining}`;
+  let resultText=`Your Age: ${age} years\nEstimated Remaining Life: ${remaining} years`;
   document.getElementById('result').innerText=resultText;
   
   // Show share buttons
