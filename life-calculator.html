@@ -3,49 +3,61 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Life Calculator – Estimate Your Remaining Years</title>
+<title>Life Calculator – Fun Life Expectancy Estimator</title>
 
 <style>
-body { font-family: Arial, sans-serif; text-align:center; padding:40px; background:#f9f9f9; }
-h1 { color:#2c3e50; }
-input, select { padding:10px; margin:10px; border-radius:5px; border:1px solid #ccc; }
+body { font-family: Arial, sans-serif; text-align:center; padding:40px; background:#f4f8fb; }
+h1 { color:#2c3e50; margin-bottom:10px; }
+p.subtitle { color:#555; font-size:16px; margin-bottom:25px; }
+label { display:block; margin:10px 0 5px; font-weight:bold; }
+input, select { padding:10px; margin:5px 0 15px; border-radius:5px; border:1px solid #ccc; width:220px; }
 button { padding:12px 25px; background:#3498db; color:#fff; border:none; border-radius:5px; cursor:pointer; font-size:16px; }
 button:hover { background:#2980b9; }
-#result { margin-top:20px; font-size:18px; color:#34495e; }
-.disclaimer { margin-top:20px; font-size:14px; color:#888; }
-.share { margin-top:15px; display:none; }
+#result { margin-top:20px; font-size:18px; color:#34495e; white-space:pre-line; }
+.progress-container { width:60%; margin:20px auto; background:#ddd; border-radius:20px; overflow:hidden; height:25px; }
+.progress-bar { height:100%; background:#27ae60; text-align:center; color:#fff; line-height:25px; font-size:14px; }
+.share { margin-top:20px; display:none; }
 .share a { margin:0 10px; display:inline-block; padding:8px 12px; background:#3498db; color:#fff; border-radius:5px; text-decoration:none; }
 .share a:hover { background:#2980b9; }
 .ad-box { margin:25px auto; width:320px; height:50px; border:1px dashed #999; display:flex; align-items:center; justify-content:center; background:#fff; }
+.disclaimer { margin-top:25px; font-size:14px; color:#888; }
 </style>
 </head>
 <body>
 
 <h1>Life Calculator</h1>
-<p>Estimate your remaining years based on your age and lifestyle (for fun!)</p>
+<p class="subtitle">Estimate your age, remaining years, and life expectancy (just for fun 🎉)</p>
 
-<label>Date of Birth:</label>
-<input type="date" id="dob"><br>
-<label>Do you smoke?</label>
-<select id="smoke">
-  <option value="no">No</option>
-  <option value="yes">Yes</option>
-</select><br>
-<label>Exercise regularly?</label>
-<select id="exercise">
-  <option value="no">No</option>
-  <option value="yes">Yes</option>
-</select><br>
-<button onclick="calculateLife()">Calculate Life Expectancy</button>
+<form onsubmit="event.preventDefault(); calculateLife();">
+  <label for="dob">Date of Birth:</label>
+  <input type="date" id="dob" required><br>
+
+  <label for="smoke">Do you smoke?</label>
+  <select id="smoke">
+    <option value="no">No</option>
+    <option value="yes">Yes</option>
+  </select><br>
+
+  <label for="exercise">Exercise regularly?</label>
+  <select id="exercise">
+    <option value="no">No</option>
+    <option value="yes">Yes</option>
+  </select><br>
+
+  <button type="submit">Calculate Life Expectancy</button>
+</form>
 
 <div id="result"></div>
+<div class="progress-container" style="display:none;">
+  <div id="lifeBar" class="progress-bar"></div>
+</div>
 
 <!-- Ads Placeholder Top -->
 <div class="ad-box">Your Ad Here</div>
 
 <!-- Share buttons -->
 <div class="share" id="shareButtons">
-  <p>Share your result:</p>
+  <p>📢 Share your result:</p>
   <a href="#" target="_blank" id="whatsapp">WhatsApp</a>
   <a href="#" target="_blank" id="facebook">Facebook</a>
   <a href="#" target="_blank" id="twitter">Twitter</a>
@@ -54,8 +66,7 @@ button:hover { background:#2980b9; }
 <!-- Ads Placeholder Bottom -->
 <div class="ad-box">Your Ad Here</div>
 
-<!-- Disclaimer -->
-<p class="disclaimer">⚠️ This calculator is just for fun and entertainment purposes, not medical advice.</p>
+<p class="disclaimer">⚠️ Disclaimer: This calculator is for fun and entertainment only. It is not medical advice.</p>
 
 <script>
 function calculateLife() {
@@ -63,7 +74,7 @@ function calculateLife() {
   if(!dob){document.getElementById('result').innerText="Enter your date of birth."; return;}
   let birth=new Date(dob), today=new Date();
   
-  // Calculate current age
+  // Calculate age properly
   let age=today.getFullYear()-birth.getFullYear();
   let m = today.getMonth() - birth.getMonth();
   if (m < 0 || (m === 0 && today.getDate() < birth.getDate())) {
@@ -81,15 +92,23 @@ function calculateLife() {
   let remaining=life-age;
   remaining=remaining<0?0:remaining;
   
-  let resultText=`Your Age: ${age} years\nEstimated Remaining Life: ${remaining} years`;
+  let resultText=`Your Age: ${age} years\nEstimated Life Expectancy: ${life} years\nEstimated Remaining Life: ${remaining} years`;
   document.getElementById('result').innerText=resultText;
+
+  // Progress bar
+  let bar=document.getElementById('lifeBar');
+  let percent=(age/life)*100;
+  percent=percent>100?100:percent;
+  bar.style.width=percent+"%";
+  bar.innerText=Math.round(percent)+"% lived";
+  document.querySelector(".progress-container").style.display="block";
   
   // Show share buttons
   let shareDiv = document.getElementById('shareButtons');
   shareDiv.style.display = "block";
   
   let url = encodeURIComponent("https://shah51214-hue.github.io/age-calculator/life-calculator.html");
-  let text = encodeURIComponent(resultText + " Try this Life Calculator!");
+  let text = encodeURIComponent(resultText + " 🎉 Try this Life Calculator!");
   
   document.getElementById('whatsapp').href = `https://wa.me/?text=${text} ${url}`;
   document.getElementById('facebook').href = `https://www.facebook.com/sharer/sharer.php?u=${url}&quote=${text}`;
