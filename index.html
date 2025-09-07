@@ -1,203 +1,101 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Age & Life Calculator</title>
-  <meta name="description" content="Free Age & Life Calculator to calculate your exact age in years, months, and days." />
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background: #F6FFF8;
-      margin: 0;
-      padding: 0;
-      line-height: 1.6;
-      color: #2D3436;
-    }
-    header {
-      background: linear-gradient(90deg, #2D6A4F, #40916C);
-      color: #fff;
-      padding: 20px;
-      text-align: center;
-    }
-    header h1 {
-      margin: 0;
-      font-size: 2rem;
-    }
-    nav {
-      margin-top: 10px;
-    }
-    nav a {
-      margin: 0 12px;
-      text-decoration: none;
-      color: #d8f3dc;
-      font-weight: 500;
-    }
-    nav a:hover {
-      color: #ffffff;
-    }
-    main {
-      max-width: 800px;
-      margin: 30px auto;
-      padding: 20px;
-      background: #ffffff;
-      border-radius: 10px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-    }
-    h2 {
-      color: #2D6A4F;
-    }
-    input, button {
-      padding: 10px;
-      font-size: 1rem;
-      margin: 10px 0;
-      border: 1px solid #ccc;
-      border-radius: 6px;
-    }
-    button {
-      cursor: pointer;
-      background: #52B788;
-      color: #fff;
-      border: none;
-      font-weight: bold;
-      transition: background 0.3s;
-    }
-    button:hover {
-      background: #2D6A4F;
-    }
-    .result {
-      margin-top: 20px;
-      font-weight: bold;
-      color: #2D6A4F;
-      font-size: 1.2rem;
-    }
-    /* FAQ Styles */
-    .faq-item {
-      margin: 10px 0;
-      border-bottom: 1px solid #eee;
-      padding-bottom: 10px;
-    }
-    .faq-question {
-      background: #d8f3dc;
-      padding: 12px;
-      border-radius: 6px;
-      cursor: pointer;
-      font-weight: bold;
-      color: #1b4332;
-      transition: background 0.3s;
-    }
-    .faq-question:hover {
-      background: #b7e4c7;
-    }
-    .faq-answer {
-      display: none;
-      padding: 10px;
-      margin-top: 5px;
-      background: #f8fdf9;
-      border-left: 3px solid #52B788;
-      border-radius: 4px;
-      box-shadow: 0 1px 3px rgba(0,0,0,0.05);
-    }
-    footer {
-      background: #2D6A4F;
-      color: #fff;
-      text-align: center;
-      padding: 15px;
-      margin-top: 40px;
-    }
-    footer a {
-      color: #95d5b2;
-      margin: 0 8px;
-      text-decoration: none;
-    }
-    footer a:hover {
-      color: #ffffff;
-      text-decoration: underline;
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Life Calculator – Estimate Your Remaining Years</title>
+
+<style>
+body { font-family: Arial, sans-serif; text-align:center; padding:40px; background:#f9f9f9; }
+h1 { color:#2c3e50; }
+input, select { padding:10px; margin:10px; border-radius:5px; border:1px solid #ccc; }
+button { padding:12px 25px; background:#3498db; color:#fff; border:none; border-radius:5px; cursor:pointer; font-size:16px; }
+button:hover { background:#2980b9; }
+#result { margin-top:20px; font-size:18px; color:#34495e; }
+.disclaimer { margin-top:20px; font-size:14px; color:#888; }
+.share { margin-top:15px; display:none; }
+.share a { margin:0 10px; display:inline-block; padding:8px 12px; background:#3498db; color:#fff; border-radius:5px; text-decoration:none; }
+.share a:hover { background:#2980b9; }
+.ad-box { margin:25px auto; width:320px; height:50px; border:1px dashed #999; display:flex; align-items:center; justify-content:center; background:#fff; }
+</style>
 </head>
 <body>
-  <header>
-    <h1>Age & Life Calculator</h1>
-    <nav>
-      <a href="index.html">Home</a>
-      <a href="about.html">About</a>
-      <a href="faq.html">FAQ</a>
-      <a href="blog/">Blog</a>
-    </nav>
-  </header>
 
-  <main>
-    <h2>Enter your date of birth to calculate your age:</h2>
-    <label for="dob">Date of Birth (mm/dd/yyyy):</label><br>
-    <input type="date" id="dob" />
-    <button onclick="calculateAge()">Calculate Age</button>
+<h1>Life Calculator</h1>
+<p>Estimate your remaining years based on your age and lifestyle (for fun!)</p>
 
-    <div id="result" class="result"></div>
+<label>Date of Birth:</label>
+<input type="date" id="dob"><br>
+<label>Do you smoke?</label>
+<select id="smoke">
+  <option value="no">No</option>
+  <option value="yes">Yes</option>
+</select><br>
+<label>Exercise regularly?</label>
+<select id="exercise">
+  <option value="no">No</option>
+  <option value="yes">Yes</option>
+</select><br>
+<button onclick="calculateLife()">Calculate Life Expectancy</button>
 
-    <section>
-      <h2>Frequently Asked Questions</h2>
+<div id="result"></div>
 
-      <div class="faq-item">
-        <div class="faq-question">Q: Is this calculator free?</div>
-        <div class="faq-answer">Yes, it’s completely free to use.</div>
-      </div>
+<!-- Ads Placeholder Top -->
+<div class="ad-box">Your Ad Here</div>
 
-      <div class="faq-item">
-        <div class="faq-question">Q: Does it work on mobile?</div>
-        <div class="faq-answer">Yes, it works on both desktop and mobile devices.</div>
-      </div>
+<!-- Share buttons -->
+<div class="share" id="shareButtons">
+  <p>Share your result:</p>
+  <a href="#" target="_blank" id="whatsapp">WhatsApp</a>
+  <a href="#" target="_blank" id="facebook">Facebook</a>
+  <a href="#" target="_blank" id="twitter">Twitter</a>
+</div>
 
-      <div class="faq-item">
-        <div class="faq-question">Q: How accurate is the calculation?</div>
-        <div class="faq-answer">The calculator uses today’s date and your entered birth date, so it’s fully accurate.</div>
-      </div>
-    </section>
-  </main>
+<!-- Ads Placeholder Bottom -->
+<div class="ad-box">Your Ad Here</div>
 
-  <footer>
-    <small>© 2025 271289.xyz | All Rights Reserved</small><br>
-    <a href="about.html">About Us</a> |
-    <a href="privacy.html">Privacy Policy</a> |
-    <a href="terms.html">Terms</a> |
-    <a href="faq.html">FAQ</a>
-  </footer>
+<!-- Disclaimer -->
+<p class="disclaimer">⚠️ This calculator is just for fun and entertainment purposes, not medical advice.</p>
 
-  <script>
-    function calculateAge() {
-      const dob = document.getElementById("dob").value;
-      if (!dob) {
-        document.getElementById("result").innerText = "⚠️ Please select your date of birth.";
-        return;
-      }
-      const birthDate = new Date(dob);
-      const today = new Date();
+<script>
+function calculateLife() {
+  let dob=document.getElementById('dob').value;
+  if(!dob){document.getElementById('result').innerText="Enter your date of birth."; return;}
+  let birth=new Date(dob), today=new Date();
+  
+  // Calculate current age
+  let age=today.getFullYear()-birth.getFullYear();
+  let m = today.getMonth() - birth.getMonth();
+  if (m < 0 || (m === 0 && today.getDate() < birth.getDate())) {
+    age--;
+  }
 
-      let years = today.getFullYear() - birthDate.getFullYear();
-      let months = today.getMonth() - birthDate.getMonth();
-      let days = today.getDate() - birthDate.getDate();
+  // Lifestyle adjustments
+  let smoke=document.getElementById('smoke').value;
+  let exercise=document.getElementById('exercise').value;
+  let life=80; // baseline life expectancy
+  if(smoke==="yes") life-=10;
+  if(exercise==="no") life-=5;
 
-      if (days < 0) {
-        months--;
-        const prevMonth = new Date(today.getFullYear(), today.getMonth(), 0);
-        days += prevMonth.getDate();
-      }
-      if (months < 0) {
-        years--;
-        months += 12;
-      }
+  // Calculate remaining years
+  let remaining=life-age;
+  remaining=remaining<0?0:remaining;
+  
+  let resultText=`Your Age: ${age} years\nEstimated Remaining Life: ${remaining} years`;
+  document.getElementById('result').innerText=resultText;
+  
+  // Show share buttons
+  let shareDiv = document.getElementById('shareButtons');
+  shareDiv.style.display = "block";
+  
+  let url = encodeURIComponent("https://shah51214-hue.github.io/age-calculator/life-calculator.html");
+  let text = encodeURIComponent(resultText + " Try this Life Calculator!");
+  
+  document.getElementById('whatsapp').href = `https://wa.me/?text=${text} ${url}`;
+  document.getElementById('facebook').href = `https://www.facebook.com/sharer/sharer.php?u=${url}&quote=${text}`;
+  document.getElementById('twitter').href = `https://twitter.com/intent/tweet?text=${text}&url=${url}`;
+}
+</script>
 
-      document.getElementById("result").innerText =
-        `🎉 You are ${years} years, ${months} months, and ${days} days old.`;
-    }
-
-    // FAQ toggle
-    document.querySelectorAll(".faq-question").forEach(item => {
-      item.addEventListener("click", () => {
-        const answer = item.nextElementSibling;
-        answer.style.display = answer.style.display === "block" ? "none" : "block";
-      });
-    });
-  </script>
 </body>
 </html>
