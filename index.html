@@ -5,24 +5,25 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Age Calculator – Calculate Your Exact Age</title>
 
-  <meta name="description" content="Free Age Calculator online. Instantly calculate your exact age in years, months, and days.">
+  <meta name="description" content="Free Age Calculator online. Instantly calculate your exact age in years, months, and days. Learn interesting facts about your age!">
   <meta name="keywords" content="Age Calculator, Calculate Age, Birthday Calculator, Exact Age Tool, Online Calculator">
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://yourdomain.com/index.html">
 
   <style>
-    body { font-family: Arial, sans-serif; margin:0; padding:0; background:#f9f9f9; }
+    body { font-family: Arial, sans-serif; margin:0; padding:0; background:#f9f9f9; line-height:1.6; }
     header { background:#27ae60; padding:15px; text-align:center; }
     header h1 { margin:0; color:#fff; }
     nav { background:#2c3e50; padding:10px; text-align:center; }
     nav a { color:#fff; margin:0 15px; text-decoration:none; font-weight:bold; }
     nav a:hover { text-decoration:underline; }
-    main { text-align:center; padding:40px; }
+    main { max-width:800px; margin:0 auto; padding:40px; background:#fff; }
     input { padding:10px; margin:10px; border-radius:5px; border:1px solid #ccc; }
     button { padding:12px 25px; background:#27ae60; color:#fff; border:none; border-radius:5px; cursor:pointer; font-size:16px; }
     button:hover { background:#219150; }
     #result { margin-top:20px; font-size:18px; color:#34495e; }
     .ad-box { margin:25px auto; width:320px; height:50px; border:1px dashed #999; display:flex; align-items:center; justify-content:center; background:#fff; }
+    article { margin-top:30px; text-align:left; }
     footer { background:#2c3e50; color:#fff; padding:15px; text-align:center; margin-top:40px; }
   </style>
 </head>
@@ -41,7 +42,7 @@
 </nav>
 
 <main>
-  <p>Calculate your exact age in years, months, and days instantly.</p>
+  <p>Use this free tool to calculate your exact age in years, months, and days instantly. Simply enter your date of birth below and click "Calculate Age".</p>
 
   <label>Date of Birth:</label>
   <input type="date" id="dob"><br>
@@ -49,6 +50,26 @@
 
   <div id="result"></div>
 
+  <!-- Placeholder for AdSense ad -->
+  <div class="ad-box">
+    <p>Ad space (replace with AdSense code)</p>
+  </div>
+
+  <!-- Additional content to satisfy Google -->
+  <article>
+    <h2>About Age Calculation</h2>
+    <p>Calculating your age accurately can be more fun than you think! Our calculator takes into account years, months, and days, so you know exactly how old you are. Knowing your age can help you plan events, health checkups, and even financial planning.</p>
+    
+    <h2>Fun Facts About Age</h2>
+    <ul>
+      <li>The average human lifespan has increased significantly over the past century.</li>
+      <li>Age is often calculated differently in some cultures, counting from conception or using lunar calendars.</li>
+      <li>Knowing your exact age can be useful for educational, legal, and medical purposes.</li>
+    </ul>
+
+    <h2>Tips for Using This Calculator</h2>
+    <p>Enter your date of birth carefully. You can calculate the age for any past date, which is great for historical events, anniversaries, or planning birthdays.</p>
+  </article>
 </main>
 
 <footer>
@@ -72,7 +93,6 @@ function calculateAge() {
     `Your Age: ${ageY} years, ${ageM} months, ${ageD} days`;
 }
 </script>
-<a href="blogs.html">Blog</a>
 
 </body>
 </html>
